@@ -541,7 +541,450 @@ document.getElementById("lang").addEventListener("click", function() {
       item.style.display === "none" ? "block" : "none";
   });
 });
-</script>
+<section class="story-section" dir="rtl" lang="ur">
+  <h1>میری زندگی، میری مرضی ❤️</h1>
 
-</body>
+  <label for="languageSelect">زبان منتخب کریں:</label>
+
+  <select id="languageSelect">
+    <option value="ur">اردو</option>
+    <option value="hi">हिन्दी</option>
+    <option value="en">English</option>
+    <option value="ar">العربية</option>
+    <option value="fa">فارسی</option>
+    <option value="sd">سنڌي</option>
+    <option value="pa">ਪੰਜਾਬੀ</option>
+    <option value="ps">پښتو</option>
+    <option value="bn">বাংলা</option>
+    <option value="tr">Türkçe</option>
+    <option value="fr">Français</option>
+    <option value="de">Deutsch</option>
+    <option value="es">Español</option>
+    <option value="pt">Português</option>
+    <option value="ru">Русский</option>
+    <option value="zh">中文</option>
+    <option value="ja">日本語</option>
+    <option value="ko">한국어</option>
+    <option value="id">Bahasa Indonesia</option>
+    <option value="ml">മലയാളം</option>
+  </select>
+
+  <div id="storyContent"></div>
+</section>
+
+<style>
+  .story-section {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 25px;
+    background: #ffffff;
+    color: #222222;
+    border-radius: 15px;
+    line-height: 2;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+  }
+
+  .story-section h1 {
+    text-align: center;
+    color: #b21f45;
+  }
+
+  .story-section h2 {
+    color: #8e244d;
+    margin-top: 25px;
+  }
+
+  .story-section blockquote {
+    background: #fff1f5;
+    border-right: 5px solid #d6336c;
+    padding: 12px 18px;
+    margin: 20px 0;
+    font-weight: bold;
+  }
+
+  #languageSelect {
+    display: block;
+    width: 100%;
+    max-width: 350px;
+    padding: 12px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+</style>
+
+<script>
+  const stories = {
+    ur: {
+      direction: "rtl",
+      title: "میری زندگی، میری مرضی ❤️",
+      html: `
+        <h2>ایک محبت جو نفرت کو ہرا گئی</h2>
+
+        <p>
+          ایک خوبصورت سے محلے میں 17 سال کی ایک معصوم اور خوبصورت لڑکی رہتی تھی،
+          جس کا نام حیا تھا۔ اسی محلے میں 19 سال کا ایک محنتی اور شریف لڑکا رہتا تھا،
+          جس کا نام ارمان تھا۔
+        </p>
+
+        <p>
+          حیا اور ارمان ایک دوسرے کو بچپن سے جانتے تھے۔ دونوں کی دوستی کب محبت
+          میں بدل گئی، انہیں خود بھی پتا نہ چلا۔
+        </p>
+
+        <p>
+          ارمان جب حیا کو دیکھتا تو اس کے چہرے پر مسکراہٹ آ جاتی، اور حیا جب ارمان
+          کی آواز سنتی تو اس کا دل خوشی سے دھڑکنے لگتا۔
+        </p>
+
+        <h2>محبت کی خبر اور محلے کا طوفان</h2>
+
+        <p>
+          ایک دن ارمان کے رشتے داروں کو حیا اور ارمان کی محبت کا پتا چل گیا۔
+          بات پورے محلے میں پھیل گئی اور دونوں خاندانوں میں شدید لڑائی ہو گئی۔
+        </p>
+
+        <blockquote>
+          "امی، لوگ تو ہر بات کہیں گے، لیکن میری زندگی کا فیصلہ کون کرے گا؟"
+        </blockquote>
+
+        <h2>حیا کا تاریخی جواب</h2>
+
+        <blockquote>
+          "میری زندگی، میری مرضی!"
+        </blockquote>
+
+        <p>
+          "میں کسی کی عزت خراب نہیں کرنا چاہتی، لیکن میری زندگی کا فیصلہ بھی میری
+          مرضی کے بغیر نہیں ہونا چاہیے۔ ارمان غریب ہے تو کیا ہوا؟ اس کا دل صاف ہے،
+          وہ محنتی ہے، اور وہ مجھے عزت دیتا ہے۔"
+        </p>
+
+        <blockquote>
+          "مجھے تمہاری دولت نہیں، تمہارا ساتھ چاہیے۔"
+        </blockquote>
+
+        <h2>جدائی کا درد</h2>
+
+        <p>
+          لڑائی کے بعد دونوں خاندانوں نے حیا اور ارمان کی ملاقات بند کروا دی۔
+          ارمان دوسرے شہر میں کام کی تلاش کے لیے چلا گیا۔ وہ دن رات محنت کرتا رہا
+          اور اس کے دل میں صرف ایک خواب تھا: حیا کے لیے ایک بہتر زندگی۔
+        </p>
+
+        <h2>قسمت نے کروٹ لی</h2>
+
+        <p>
+          کئی سال بعد ارمان کی محنت رنگ لانے لگی۔ اس نے ایک چھوٹا سا کاروبار شروع
+          کیا اور وقت کے ساتھ ایک کامیاب کاروباری شخص بن گیا۔
+        </p>
+
+        <h2>محلے میں سہولتوں کی بارش</h2>
+
+        <ul>
+          <li>غریبوں کے لیے ہسپتال بنوایا۔</li>
+          <li>بچوں کے لیے اسکول قائم کیا۔</li>
+          <li>خوبصورت پارک اور تالاب بنوایا۔</li>
+          <li>صاف پانی کا فلٹر پلانٹ لگوایا۔</li>
+          <li>گلیوں کی مرمت اور صفائی کروائی۔</li>
+          <li>ضرورت مند خاندانوں کے لیے راشن اور مالی مدد کا انتظام کیا۔</li>
+        </ul>
+
+        <h2>حیا کی واپسی</h2>
+
+        <p>
+          کچھ عرصے بعد حیا اپنے خاندان کے ساتھ واپس آئی۔ اس نے دیکھا کہ ارمان نے
+          پورے محلے کو بدل دیا ہے تو اس کی آنکھوں میں خوشی کے آنسو آ گئے۔
+        </p>
+
+        <blockquote>
+          "تم نے اپنا وعدہ پورا کر دیا۔"
+        </blockquote>
+
+        <p>
+          ارمان نے جواب دیا:
+          "تمہاری محبت نے مجھے ہمت دی۔"
+        </p>
+
+        <h2>خوشیوں بھری شادی</h2>
+
+        <p>
+          دونوں خاندانوں نے رضامندی سے حیا اور ارمان کی شادی طے کر دی۔
+          شادی کے دن پورا محلہ روشنیوں سے سج گیا۔
+        </p>
+
+        <blockquote>
+          "آج محبت کے ساتھ انسانیت بھی جیت گئی ہے۔"
+        </blockquote>
+
+        <h2>کہانی کا سبق</h2>
+
+        <p>
+          سچی محبت صرف دولت حاصل کرنے کا نام نہیں، بلکہ عزت، وفاداری اور انسانیت
+          کی خدمت کا نام ہے۔
+        </p>
+
+        <p>
+          "میری زندگی، میری مرضی" — لیکن خوشی وہی ہے جس میں عزت، رضامندی اور سب
+          کا بھلا شامل ہو۔ ❤️
+        </p>
+      `
+    },
+
+    hi: {
+      direction: "ltr",
+      title: "मेरी ज़िंदगी, मेरी मर्ज़ी ❤️",
+      html: `
+        <h2>एक प्यार जिसने नफ़रत को हरा दिया</h2>
+
+        <p>
+          एक खूबसूरत मोहल्ले में 17 साल की मासूम और खूबसूरत लड़की रहती थी,
+          जिसका नाम हया था। उसी मोहल्ले में 19 साल का मेहनती और शरीफ लड़का
+          रहता था, जिसका नाम अरमान था।
+        </p>
+
+        <p>
+          हया और अरमान एक-दूसरे को बचपन से जानते थे। उनकी दोस्ती कब प्यार में
+          बदल गई, उन्हें खुद भी पता नहीं चला।
+        </p>
+
+        <h2>प्यार की खबर और मोहल्ले का तूफ़ान</h2>
+
+        <p>
+          एक दिन अरमान के रिश्तेदारों को हया और अरमान के प्यार का पता चल गया।
+          बात पूरे मोहल्ले में फैल गई और दोनों परिवारों में बहुत बड़ा झगड़ा हो गया।
+        </p>
+
+        <blockquote>
+          "अम्मी, लोग तो हर बात कहेंगे, लेकिन मेरी ज़िंदगी का फैसला कौन करेगा?"
+        </blockquote>
+
+        <h2>हया का ऐतिहासिक जवाब</h2>
+
+        <blockquote>
+          "मेरी ज़िंदगी, मेरी मर्ज़ी!"
+        </blockquote>
+
+        <p>
+          "मैं किसी की इज़्ज़त खराब नहीं करना चाहती, लेकिन मेरी ज़िंदगी का फैसला
+          मेरी मर्ज़ी के बिना नहीं होना चाहिए। अरमान गरीब है तो क्या हुआ?
+          उसका दिल साफ है, वह मेहनती है और वह मेरी इज़्ज़त करता है।"
+        </p>
+
+        <h2>जुदाई का दर्द</h2>
+
+        <p>
+          झगड़े के बाद दोनों परिवारों ने हया और अरमान की मुलाकात बंद करवा दी।
+          अरमान दूसरे शहर में काम की तलाश में चला गया। वह दिन-रात मेहनत करता रहा।
+        </p>
+
+        <h2>किस्मत ने करवट ली</h2>
+
+        <p>
+          कई साल बाद अरमान की मेहनत रंग लाई। उसने छोटा सा कारोबार शुरू किया
+          और धीरे-धीरे एक सफल कारोबारी बन गया।
+        </p>
+
+        <h2>मोहल्ले में खुशहाली</h2>
+
+        <ul>
+          <li>गरीबों के लिए अस्पताल बनवाया।</li>
+          <li>बच्चों के लिए स्कूल बनवाया।</li>
+          <li>पार्क और तालाब बनवाया।</li>
+          <li>साफ पानी का इंतज़ाम किया।</li>
+          <li>गलियों की मरम्मत और सफाई करवाई।</li>
+          <li>ज़रूरतमंद परिवारों के लिए राशन और मदद का इंतज़ाम किया।</li>
+        </ul>
+
+        <h2>खुशियों भरी शादी</h2>
+
+        <p>
+          आखिरकार दोनों परिवारों ने हया और अरमान की शादी की मंज़ूरी दे दी।
+          पूरा मोहल्ला रोशनी से सज गया और सभी लोग उनकी खुशी में शामिल हुए।
+        </p>
+
+        <blockquote>
+          "आज प्यार के साथ इंसानियत भी जीत गई है।"
+        </blockquote>
+
+        <h2>कहानी की सीख</h2>
+
+        <p>
+          सच्चा प्यार सिर्फ दौलत पाने का नाम नहीं, बल्कि इज़्ज़त, वफ़ादारी और
+          इंसानियत की सेवा का नाम है। ❤️
+        </p>
+      `
+    },
+
+    en: {
+      direction: "ltr",
+      title: "My Life, My Choice ❤️",
+      html: `
+        <h2>A Love That Defeated Hate</h2>
+
+        <p>
+          In a beautiful neighborhood lived a kind and innocent 17-year-old girl
+          named Haya. A hardworking and respectable 19-year-old boy named Arman
+          also lived there.
+        </p>
+
+        <p>
+          Haya and Arman had known each other since childhood. Their friendship
+          slowly turned into love before they even realized it.
+        </p>
+
+        <h2>The News of Love and the Neighborhood Storm</h2>
+
+        <p>
+          One day, Arman's relatives discovered their love. The news spread
+          throughout the neighborhood, and a serious fight broke out between
+          the two families.
+        </p>
+
+        <blockquote>
+          "Mother, people will always talk, but who will decide my life?"
+        </blockquote>
+
+        <h2>Haya's Historic Answer</h2>
+
+        <blockquote>
+          "My Life, My Choice!"
+        </blockquote>
+
+        <p>
+          "I do not want to hurt anyone's honor, but my life should not be
+          decided without my consent. Arman may be poor, but his heart is pure.
+          He is hardworking and he respects me."
+        </p>
+
+        <h2>The Pain of Separation</h2>
+
+        <p>
+          After the fight, both families stopped Haya and Arman from meeting.
+          Arman left for another city to find work. He worked day and night
+          with only one dream: to build a better life for Haya.
+        </p>
+
+        <h2>Destiny Changed</h2>
+
+        <p>
+          After several years, Arman's hard work finally paid off. He started
+          a small business and gradually became a successful businessman.
+        </p>
+
+        <h2>Prosperity in the Neighborhood</h2>
+
+        <ul>
+          <li>He built a modern hospital for poor people.</li>
+          <li>He established a good school for children.</li>
+          <li>He created a beautiful park and pond.</li>
+          <li>He installed a clean-water filtration plant.</li>
+          <li>He repaired and cleaned the streets.</li>
+          <li>He arranged food and financial support for needy families.</li>
+        </ul>
+
+        <h2>A Happy Wedding</h2>
+
+        <p>
+          Finally, both families agreed to Haya and Arman's marriage.
+          The entire neighborhood was decorated with lights, and everyone
+          joined their happiness.
+        </p>
+
+        <blockquote>
+          "Today, love and humanity have both won."
+        </blockquote>
+
+        <h2>Moral of the Story</h2>
+
+        <p>
+          True love is not only about wealth. It is about respect, loyalty,
+          kindness, and serving humanity. ❤️
+        </p>
+      `
+    },
+
+    ar: {
+      direction: "rtl",
+      title: "حياتي، اختياري ❤️",
+      html: `
+        <h2>حب هزم الكراهية</h2>
+        <p>
+          هذه قصة حب جميلة بين فتاة اسمها حياة وشاب اسمه أرمان.
+          واجها اعتراضات كثيرة من العائلتين، لكنهما تمسكا بالاحترام والعمل الجاد.
+        </p>
+        <p>
+          بعد سنوات من التعب، أصبح أرمان رجل أعمال ناجحًا، لكنه لم ينتقم من أحد،
+          بل ساعد أهل الحي وبنى مدرسة ومستشفى ومرافق لخدمة المحتاجين.
+        </p>
+        <h2>العبرة</h2>
+        <p>
+          الحب الحقيقي يقوم على الاحترام والوفاء وخدمة الناس، وليس على المال فقط. ❤️
+        </p>
+      `
+    },
+
+    fa: {
+      direction: "rtl",
+      title: "زندگی من، انتخاب من ❤️",
+      html: `
+        <h2>عشقی که نفرت را شکست داد</h2>
+        <p>
+          این داستان عشق حیا و ارمان است؛ عشقی که با مخالفت خانواده‌ها روبه‌رو شد،
+          اما با احترام، وفاداری و تلاش ادامه پیدا کرد.
+        </p>
+        <p>
+          ارمان پس از سال‌ها تلاش موفق شد و به جای انتقام، به مردم محله کمک کرد.
+        </p>
+        <h2>نتیجه</h2>
+        <p>
+          عشق واقعی یعنی احترام، وفاداری و خدمت به انسان‌ها. ❤️
+        </p>
+      `
+    },
+
+    sd: {
+      direction: "rtl",
+      title: "منهنجي زندگي، منهنجي مرضي ❤️",
+      html: `
+        <h2>هڪ محبت جنهن نفرت کي شڪست ڏني</h2>
+        <p>
+          هي حيا ۽ ارمان جي سچي محبت جي ڪهاڻي آهي، جنهن کي خاندانن جي مخالفت
+          جو سامنا ٿيو، پر ٻنهي عزت، وفاداري ۽ محنت جو ساٿ نه ڇڏيو.
+        </p>
+        <p>
+          ارمان ڪامياب ٿيڻ کان پوءِ بدلو وٺڻ بدران پنهنجي پاڙي جي ماڻهن جي خدمت ڪئي.
+        </p>
+        <h2>سبق</h2>
+        <p>
+          سچي محبت عزت، وفاداري ۽ انسانيت جي خدمت جو نالو آهي. ❤️
+        </p>
+      `
+    }
+  };
+
+  const languageSelect = document.getElementById("languageSelect");
+  const storyContent = document.getElementById("storyContent");
+  const storySection = document.querySelector(".story-section");
+
+  function showStory(language) {
+    const story = stories[language] || stories.ur;
+
+    storySection.setAttribute("dir", story.direction);
+    storySection.setAttribute("lang", language);
+    storyContent.innerHTML = `
+      <h1>${story.title}</h1>
+      ${story.html}
+    `;
+  }
+
+  languageSelect.addEventListener("change", function () {
+    showStory(this.value);
+  });
+
+  showStory("ur");
+</><</script>
+  </body>
 </html>
+
