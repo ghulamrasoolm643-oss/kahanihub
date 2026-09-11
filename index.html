@@ -1,2 +1,547 @@
-<p>Contact: <a href="mailto:ghulamrasoolm643@gmail.com">ghulamrasoolm643@gmail.com</a><br>WhatsApp: <a href="https://wa.me/923166604532" target="_blank">03166604532</a><br>Ghulam Rasool Mirbhar<br>Karachi, Pakistan</p>
-</style></head><body><header><div class="nav"><div class="logo">Kahani<span>Hub</span></div><nav><a href="#categories">Categories</a><a href="#featured">Featured</a><a href="#marketplace">Marketplace</a><a href="#about">About</a><button id="lang">اردو</button></nav></div></header><div class="hero"><div class="hero-inner"><div><div class="eyebrow">STORIES • CREATIVITY • DIGITAL CONTENT</div><h1 class="english">Your world of stories, poetry and imagination.</h1><h1 class="urdu">کہانیوں، شاعری اور تخلیقی صلاحیتوں کی دنیا</h1><p class="english">Discover Urdu and English stories, history, poetry, songs, AI prompts and creative digital products in one beautiful place.</p><p class="urdu">اردو اور انگریزی کہانیاں، تاریخ، شاعری، گانے اور اے آئی پرامپٹس ایک ہی جگہ دریافت کریں۔</p><div class="actions"><a class="btn" href="#featured">Explore KahaniHub</a><a class="btn outline" href="#marketplace">Visit Marketplace</a></div></div><div class="hero-card">📚 ✨ 🎵<p>Read. Create. Sell.</p></div></div></div><section id="categories"><h2 class="section-title">Explore Categories</h2><p class="section-sub">Find inspiring content for reading, learning and creativity.</p><div class="grid"><div class="card"><div class="icon">🏛️</div><h3>History</h3><p>Interesting historical events and civilizations.</p></div><div class="card"><div class="icon">✍️</div><h3>Poetry</h3><p>Heart-touching Urdu and English poetry.</p></div><div class="card"><div class="icon">🎵</div><h3>Music & Lyrics</h3><p>Original song lyrics and music ideas.</p></div><div class="card"><div class="icon">🤖</div><h3>AI Music Prompts</h3><p>Useful prompts for creating music with AI.</p></div><div class="card"><div class="icon">📰</div><h3>News</h3><p>Readable news summaries and topics.</p></div><div class="card"><div class="icon">📖</div><h3>Stories</h3><p>Moral, emotional and imaginative stories.</p></div></div></section><section id="featured"><h2 class="section-title">Featured Content</h2><div class="grid"><div class="card"><span class="tag">Story</span><h3>The Wise Frog</h3><p>A short moral story about courage and wisdom.</p><button onclick="alert('Demo article: The Wise Frog')">Read More</button></div><div class="card"><span class="tag">Poetry</span><h3>Dil Ki Baarish</h3><p>Romantic poetry filled with memories and emotions.</p><button onclick="alert('Demo poetry: Dil Ki Baarish')">Read More</button></div><div class="card"><span class="tag">History</span><h3>Great Civilizations</h3><p>Explore the achievements of ancient worlds.</p><button onclick="alert('Demo article: Great Civilizations')">Read More</button></div></div></section><section id="marketplace" class="market"><h2 class="section-title">Digital Marketplace</h2><p class="section-sub">Showcase your creative digital products. Payments are not connected yet.</p><div class="searchbar"><input id="search" placeholder="Search digital products..."><button onclick="searchProducts()">Search</button></div><div class="filters"><button class="active" onclick="allProducts(this)">All</button><button onclick="typeProducts('Images',this)">AI Images</button><button onclick="typeProducts('Videos',this)">AI Videos</button><button onclick="typeProducts('Songs',this)">AI Songs</button><button onclick="typeProducts('Prompts',this)">Prompts</button></div><div class="grid" id="products"><div class="card product" data-type="Images"><div class="icon">🖼️</div><h3>AI Image Pack</h3><p>High-quality AI-generated images.</p><div class="price">$3.00</div><button onclick="buy('AI Image Pack')">View Product</button></div><div class="card product" data-type="Videos"><div class="icon">🎬</div><h3>AI Video Pack</h3><p>Creative vertical video concepts.</p><div class="price">$5.00</div><button onclick="buy('AI Video Pack')">View Product</button></div><div class="card product" data-type="Songs"><div class="icon">🎧</div><h3>AI Song Collection</h3><p>Original song ideas and concepts.</p><div class="price">$4.00</div><button onclick="buy('AI Song Collection')">View Product</button></div><div class="card product" data-type="Prompts"><div class="icon">🧠</div><h3>Prompt Bundle</h3><p>Ready-to-use prompts for images and music.</p><div class="price">$2.00</div><button onclick="buy('Prompt Bundle')">View Product</button></div></div></section><div id="about" class="about"><div class="about-inner"><h2>KahaniHub</h2><p>A creative place for stories, poetry, music and digital <p><a href="mailto:ghulamrasoolm643@gmail.com">ghulamrasoolm643@gmail.com</a><br><a href="https://wa.me/923166604532" target="_blank">WhatsApp: 03166604532</a></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KahaniHub - Stories, Poetry & Creativity</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #222;
+  line-height: 1.6;
+}
+
+header {
+  background: #172554;
+  color: white;
+  padding: 18px 6%;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: #facc15;
+}
+
+nav {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+nav a,
+nav button {
+  color: white;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.hero {
+  background: linear-gradient(135deg, #dbeafe, #fef3c7);
+  padding: 70px 6%;
+}
+
+.hero-inner {
+  max-width: 1150px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  align-items: center;
+}
+
+.eyebrow {
+  color: #1d4ed8;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-size: 42px;
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
+
+.urdu {
+  direction: rtl;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn,
+.card button {
+  display: inline-block;
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 11px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn.outline {
+  background: white;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+}
+
+.hero-card {
+  background: white;
+  border-radius: 18px;
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 42px;
+  box-shadow: 0 10px 30px #0002;
+}
+
+.hero-card p {
+  font-size: 20px;
+  margin-top: 15px;
+}
+
+section,
+.about {
+  padding: 55px 6%;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.section-sub {
+  text-align: center;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.grid {
+  max-width: 1150px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: 0 5px 20px #00000012;
+}
+
+.card h3 {
+  margin: 10px 0;
+  color: #172554;
+}
+
+.icon {
+  font-size: 38px;
+}
+
+.tag {
+  color: #2563eb;
+  font-weight: bold;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: bold;
+  color: #16a34a;
+  margin: 15px 0;
+}
+
+.market {
+  background: #e0f2fe;
+}
+
+.searchbar {
+  max-width: 650px;
+  margin: 0 auto 25px;
+  display: flex;
+  gap: 10px;
+}
+
+.searchbar input {
+  flex: 1;
+  padding: 13px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.searchbar button,
+.filters button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 11px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.filters {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.filters button {
+  margin: 5px;
+}
+
+.about {
+  background: #172554;
+  color: white;
+}
+
+.about-inner {
+  max-width: 1150px;
+  margin: auto;
+}
+
+.about h2 {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.contact-info {
+  margin-top: 20px;
+  line-height: 2;
+}
+
+.contact-info a {
+  color: #facc15;
+  word-break: break-word;
+}
+
+footer {
+  background: #0f172a;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+@media (max-width: 700px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .nav {
+    justify-content: center;
+  }
+
+  .searchbar {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">Kahani<span>Hub</span></div>
+
+    <nav>
+      <a href="#categories">Categories</a>
+      <a href="#featured">Featured</a>
+      <a href="#marketplace">Marketplace</a>
+      <a href="#about">About</a>
+      <button id="lang">اردو</button>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">STORIES • CREATIVITY • DIGITAL CONTENT</div>
+
+      <h1 class="english">
+        Your world of stories, poetry and imagination.
+      </h1>
+
+      <h1 class="urdu">
+        کہانیوں، شاعری اور تخلیقی صلاحیتوں کی دنیا
+      </h1>
+
+      <p class="english">
+        Discover Urdu and English stories, history, poetry, songs,
+        AI prompts and creative digital products in one beautiful place.
+      </p>
+
+      <p class="urdu">
+        اردو اور انگریزی کہانیاں، تاریخ، شاعری، گانے اور اے آئی پرامپٹس
+        ایک ہی جگہ دریافت کریں۔
+      </p>
+
+      <div class="actions">
+        <a class="btn" href="#featured">Explore KahaniHub</a>
+        <a class="btn outline" href="#marketplace">Visit Marketplace</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      📚 ✨ 🎵
+      <p>Read. Create. Sell.</p>
+    </div>
+  </div>
+</div>
+
+<section id="categories">
+  <h2 class="section-title">Explore Categories</h2>
+  <p class="section-sub">
+    Find inspiring content for reading, learning and creativity.
+  </p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="icon">🏛️</div>
+      <h3>History</h3>
+      <p>Interesting historical events and civilizations.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">✍️</div>
+      <h3>Poetry</h3>
+      <p>Heart-touching Urdu and English poetry.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🎵</div>
+      <h3>Music & Lyrics</h3>
+      <p>Original song lyrics and music ideas.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🤖</div>
+      <h3>AI Music Prompts</h3>
+      <p>Useful prompts for creating music with AI.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">📰</div>
+      <h3>News</h3>
+      <p>Readable news summaries and topics.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">📖</div>
+      <h3>Stories</h3>
+      <p>Moral, emotional and imaginative stories.</p>
+    </div>
+  </div>
+</section>
+
+<section id="featured">
+  <h2 class="section-title">Featured Content</h2>
+
+  <div class="grid">
+    <div class="card">
+      <span class="tag">Story</span>
+      <h3>The Wise Frog</h3>
+      <p>A short moral story about courage and wisdom.</p>
+      <button onclick="alert('Demo article: The Wise Frog')">
+        Read More
+      </button>
+    </div>
+
+    <div class="card">
+      <span class="tag">Poetry</span>
+      <h3>Dil Ki Baarish</h3>
+      <p>Romantic poetry filled with memories and emotions.</p>
+      <button onclick="alert('Demo poetry: Dil Ki Baarish')">
+        Read More
+      </button>
+    </div>
+
+    <div class="card">
+      <span class="tag">History</span>
+      <h3>Great Civilizations</h3>
+      <p>Explore the achievements of ancient worlds.</p>
+      <button onclick="alert('Demo article: Great Civilizations')">
+        Read More
+      </button>
+    </div>
+  </div>
+</section>
+
+<section id="marketplace" class="market">
+  <h2 class="section-title">Digital Marketplace</h2>
+
+  <p class="section-sub">
+    Showcase your creative digital products. Payments are not connected yet.
+  </p>
+
+  <div class="searchbar">
+    <input id="search" placeholder="Search digital products...">
+    <button onclick="searchProducts()">Search</button>
+  </div>
+
+  <div class="filters">
+    <button onclick="allProducts()">All</button>
+    <button onclick="typeProducts('Images')">AI Images</button>
+    <button onclick="typeProducts('Videos')">AI Videos</button>
+    <button onclick="typeProducts('Songs')">AI Songs</button>
+    <button onclick="typeProducts('Prompts')">Prompts</button>
+  </div>
+
+  <div class="grid" id="products">
+    <div class="card product" data-type="Images">
+      <div class="icon">🖼️</div>
+      <h3>AI Image Pack</h3>
+      <p>High-quality AI-generated images.</p>
+      <div class="price">$3.00</div>
+      <button onclick="buy('AI Image Pack')">View Product</button>
+    </div>
+
+    <div class="card product" data-type="Videos">
+      <div class="icon">🎬</div>
+      <h3>AI Video Pack</h3>
+      <p>Creative vertical video concepts.</p>
+      <div class="price">$5.00</div>
+      <button onclick="buy('AI Video Pack')">View Product</button>
+    </div>
+
+    <div class="card product" data-type="Songs">
+      <div class="icon">🎧</div>
+      <h3>AI Song Collection</h3>
+      <p>Original song ideas and concepts.</p>
+      <div class="price">$4.00</div>
+      <button onclick="buy('AI Song Collection')">View Product</button>
+    </div>
+
+    <div class="card product" data-type="Prompts">
+      <div class="icon">🧠</div>
+      <h3>Prompt Bundle</h3>
+      <p>Ready-to-use prompts for images and music.</p>
+      <div class="price">$2.00</div>
+      <button onclick="buy('Prompt Bundle')">View Product</button>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="about-inner">
+    <h2>KahaniHub</h2>
+
+    <p>
+      A creative place for stories, poetry, music and digital content.
+    </p>
+
+    <div class="contact-info">
+      <p>
+        <strong>Name:</strong>
+        Ghulam Rasool Mirbhar
+      </p>
+
+      <p>
+        <strong>Location:</strong>
+        Karachi, Pakistan
+      </p>
+
+      <p>
+        <strong>Contact:</strong>
+        <a href="mailto:ghulamrasoolm643@gmail.com">
+          g​hulamrasoolm643@gmail.com
+        </a>
+      </p>
+
+      <p>
+        <strong>WhatsApp:</strong>
+        <a href="https://wa.me/923166604532" target="_blank">
+          03166604532
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 KahaniHub. All Rights Reserved.
+</footer>
+
+<script>
+function buy(productName) {
+  alert(productName + " selected. Payment system is not connected yet.");
+}
+
+function allProducts() {
+  document.querySelectorAll(".product").forEach(function(product) {
+    product.style.display = "block";
+  });
+}
+
+function typeProducts(type) {
+  document.querySelectorAll(".product").forEach(function(product) {
+    if (product.dataset.type === type) {
+      product.style.display = "block";
+    } else {
+      product.style.display = "none";
+    }
+  });
+}
+
+function searchProducts() {
+  var searchText = document.getElementById("search").value.toLowerCase();
+
+  document.querySelectorAll(".product").forEach(function(product) {
+    var productText = product.innerText.toLowerCase();
+
+    if (productText.includes(searchText)) {
+      product.style.display = "block";
+    } else {
+      product.style.display = "none";
+    }
+  });
+}
+
+document.getElementById("lang").addEventListener("click", function() {
+  document.querySelectorAll(".urdu").forEach(function(item) {
+    item.style.display =
+      item.style.display === "none" ? "block" : "none";
+  });
+});
+</script>
+
+</body>
+</html>
