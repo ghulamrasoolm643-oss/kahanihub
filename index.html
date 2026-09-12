@@ -232,32 +232,57 @@
   </div>
 </section>
   <div class="grid">
-    <div class="card">
-      🖼️
-      <h3>AI Image Pack</h3>
-      <p class="price">💵 $3.00</p>
-    </div>
+        </div>
+  </section>
 
-    <div class="card">
-      🎬
-      <h3>AI Video Pack</h3>
-      <p class="price">💵 $5.00</p>
-    </div>
+  <section id="about" class="about">
+    <h2>About KahaniHub</h2>
+    <p>
+      KahaniHub is a creative platform for stories, AI images, AI videos,
+      AI songs and digital content.
+    </p>
+  </section>
 
-    <div class="card">
-      🎧
-      <h3>AI Song Collection</h3>
-      <p class="price">💵 $4.00</p>
-    </div>
-  </div>
-</section>
-<section id="about" class="about"><h2>KahaniHub</h2><p>Name: Ghulam Rasool Mirbhar</p><p>Location: Karachi, Pakistan</p><p>Email: <a href="mailto:ghulamrasoolm643@gmail.com">ghulamrasoolm643@gmail.com</a></p><p>WhatsApp: <a href="https://wa.me/923166604532">03166604532</a></p></section>
-<footer>© 2026 KahaniHub. All Rights Reserved.</footer>
-<script>
-const stories={ur:{title:"میری زندگی، میری مرضی ❤️",dir:"rtl",html:"<h2>ایک محبت جو نفرت کو ہرا گئی</h2><p>حیا اور ارمان ایک دوسرے سے محبت کرتے تھے۔ خاندانوں کی مخالفت کے باوجود ارمان نے محنت کی اور کامیاب ہو گیا۔ اس نے غریبوں کی مدد کی اور آخرکار دونوں خاندان شادی پر راضی ہو گئے۔</p><blockquote>میری زندگی، میری مرضی!</blockquote><h2>سبق</h2><p>سچی محبت عزت، وفاداری، رضامندی اور انسانیت کی خدمت کا نام ہے۔ ❤️</p>"},en:{title:"My Life, My Choice ❤️",dir:"ltr",html:"<h2>A Love That Defeated Hate</h2><p>Haya and Arman loved each other. Despite family opposition, Arman worked hard and became successful. He helped poor people, and both families finally agreed to their marriage.</p><h2>Moral</h2><p>True love means respect, loyalty, consent and kindness. ❤️</p>"},hi:{title:"मेरी ज़िंदगी, मेरी मर्ज़ी ❤️",dir:"ltr",html:"<h2>एक प्यार जिसने नफ़रत को हरा दिया</h2><p>हया और अरमान एक-दूसरे से प्यार करते थे। मेहनत और सम्मान के बाद दोनों परिवार उनकी शादी के लिए राज़ी हो गए।</p>"},sd:{title:"منهنجي زندگي، منهنجي مرضي ❤️",dir:"rtl",html:"<h2>هڪ محبت جنهن نفرت کي شڪست ڏني</h2><p>حيا ۽ ارمان هڪ ٻئي سان محبت ڪندا هئا. محنت ۽ عزت سان آخرڪار ٻنهي خاندانن شادي لاءِ رضامندي ڏني.</p>"}};
-function showStory(l){let s=stories[l]||stories.ur;let sec=document.querySelector(".story-section");sec.dir=s.dir;document.getElementById("storyTitle").textContent=s.title;document.getElementById("storyContent").innerHTML=s.html}
-languageSelect.onchange=()=>showStory(languageSelect.value);showStory("ur");
-let urdu=false;document.getElementById("lang").onclick=()=>{urdu=!urdu;document.querySelectorAll(".urdu").forEach(x=>x.classList.toggle("hidden",!urdu));document.querySelectorAll(".english").forEach(x=>x.classList.toggle("hidden",urdu));document.getElementById("lang").textContent=urdu?"English":"اردو"};
-function showUpload(){let box=document.getElementById("uploadPreview");box.innerHTML="";let files=document.getElementById("mediaUpload").files;if(!files.length){box.innerHTML="<p>Please select a file.</p>";return}files.forEach(f=>{let e=document.createElement(f.type.startsWith("image/")?"img":"video");e.src=URL.createObjectURL(f);if(e.tagName==="VIDEO")e.controls=true;box.appendChild(e)})}
-</script>
-</body></html>
+  <footer>
+    © 2026 KahaniHub. All Rights Reserved.
+  </footer>
+
+  <script>
+    function showUpload() {
+      const files = document.getElementById("mediaUpload").files;
+      const title = document.getElementById("uploadTitle").value;
+      const description =
+        document.getElementById("uploadDescription").value;
+      const preview = document.getElementById("uploadPreview");
+
+      preview.innerHTML = "";
+
+      if (files.length === 0) {
+        preview.innerHTML = "<p>Please select an image or video.</p>";
+        return;
+      }
+
+      if (title.trim() !== "") {
+        preview.innerHTML += "<h3>" + title + "</h3>";
+      }
+
+      if (description.trim() !== "") {
+        preview.innerHTML += "<p>" + description + "</p>";
+      }
+
+      Array.from(files).forEach(function(file) {
+        const url = URL.createObjectURL(file);
+
+        if (file.type.startsWith("image/")) {
+          preview.innerHTML +=
+            '<img src="' + url + '" alt="Uploaded image">';
+        } else if (file.type.startsWith("video/")) {
+          preview.innerHTML +=
+            '<video controls src="' + url + '"></video>';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
