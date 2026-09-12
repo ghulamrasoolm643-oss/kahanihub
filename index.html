@@ -232,7 +232,7 @@
   </div>
 </section>
   <div class="grid">
-        </div>
+            </div>
   </section>
 
   <section id="about" class="about">
@@ -261,6 +261,31 @@
         preview.innerHTML = "<p>Please select an image or video.</p>";
         return;
       }
+
+      if (title.trim() !== "") {
+        preview.innerHTML += "<h3>" + title + "</h3>";
+      }
+
+      if (description.trim() !== "") {
+        preview.innerHTML += "<p>" + description + "</p>";
+      }
+
+      Array.from(files).forEach(function(file) {
+        const url = URL.createObjectURL(file);
+
+        if (file.type.startsWith("image/")) {
+          preview.innerHTML +=
+            '<img src="' + url + '" alt="Uploaded image">';
+        } else if (file.type.startsWith("video/")) {
+          preview.innerHTML +=
+            '<video controls src="' + url + '"></video>';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
 
       if (title.trim() !== "") {
         preview.innerHTML += "<h3>" + title + "</h3>";
