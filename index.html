@@ -286,28 +286,42 @@
 
 </body>
 </html>
+<script>
+  function showUpload() {
+    const files = document.getElementById("mediaUpload").files;
+    const title = document.getElementById("uploadTitle").value;
+    const description =
+      document.getElementById("uploadDescription").value;
+    const preview = document.getElementById("uploadPreview");
 
-      if (title.trim() !== "") {
-        preview.innerHTML += "<h3>" + title + "</h3>";
-      }
+    preview.innerHTML = "";
 
-      if (description.trim() !== "") {
-        preview.innerHTML += "<p>" + description + "</p>";
-      }
-
-      Array.from(files).forEach(function(file) {
-        const url = URL.createObjectURL(file);
-
-        if (file.type.startsWith("image/")) {
-          preview.innerHTML +=
-            '<img src="' + url + '" alt="Uploaded image">';
-        } else if (file.type.startsWith("video/")) {
-          preview.innerHTML +=
-            '<video controls src="' + url + '"></video>';
-        }
-      });
+    if (files.length === 0) {
+      preview.innerHTML = "<p>Please select an image or video.</p>";
+      return;
     }
-  </script>
+
+    if (title.trim() !== "") {
+      preview.innerHTML += "<h3>" + title + "</h3>";
+    }
+
+    if (description.trim() !== "") {
+      preview.innerHTML += "<p>" + description + "</p>";
+    }
+
+    Array.from(files).forEach(function(file) {
+      const url = URL.createObjectURL(file);
+
+      if (file.type.startsWith("image/")) {
+        preview.innerHTML +=
+          '<img src="' + url + '" alt="Uploaded image">';
+      } else if (file.type.startsWith("video/")) {
+        preview.innerHTML +=
+          '<video controls src="' + url + '"></video>';
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
