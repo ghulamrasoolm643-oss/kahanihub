@@ -42,15 +42,185 @@
 </style>
 </head>
 <body>
-<header><div class="nav"><div class="logo">Kahani<span>Hub</span></div><nav><a href="#categories">Categories</a><a href="#featured">Featured</a><a href="#story">Story</a><a href="#upload">Upload</a><a href="#marketplace">Marketplace</a><a href="#about">About</a><button id="lang">اردو</button></nav></div></header>
-<div class="hero"><div class="hero-inner"><div><p class="english">STORIES • CREATIVITY • DIGITAL CONTENT</p><h1 class="english">Your world of stories, poetry and imagination.</h1><h1 class="urdu hidden">کہانیوں، شاعری اور تخلیقی صلاحیتوں کی دنیا</h1><p class="english">Discover stories, poetry, music and creative digital products in one beautiful place.</p><p class="urdu hidden">کہانیاں، شاعری، گانے اور تخلیقی مواد ایک ہی جگہ دریافت کریں۔</p><div class="actions"><a class="btn" href="#featured">Explore Stories</a><a class="btn outline" href="#upload">Upload Image / Video</a></div></div><div class="hero-card">📚 ✨ 🎵<p>Read. Create. Sell.</p></div></div></div>
-<section id="categories"><h2 class="section-title">Explore Categories</h2><div class="grid"><div class="card">🏛️ <h3>History</h3><p>Historical events and civilizations.</p></div><div class="card">✍️ <h3>Poetry</h3><p>Urdu and English poetry.</p></div><div class="card">🎵 <h3>Music & Lyrics</h3><p>Original songs and ideas.</p></div><div class="card">📖 <h3>Stories</h3><p>Moral and imaginative stories.</p></div></div></section>
-<section id="featured"><h2 class="section-title">Featured Content</h2><div class="grid"><div class="card"><b>Story</b><h3>میری زندگی، میری مرضی ❤️</h3><p>ایک محبت جو نفرت کو ہرا گئی۔</p><a class="btn" href="#story">Read More</a></div><div class="card"><b>Poetry</b><h3>Dil Ki Baarish</h3><p>Romantic poetry filled with emotions.</p></div></div></section>
-<section id="story" class="story-section" dir="rtl"><h1 id="storyTitle">میری زندگی، میری مرضی ❤️</h1><label>زبان منتخب کریں:</label><select id="languageSelect"><option value="ur">اردو</option><option value="en">English</option><option value="hi">हिन्दी</option><option value="sd">سنڌي</option></select><div id="storyContent"></div></section>
-<section id="upload"><h2 class="section-title">Upload Image or Video</h2><p class="section-title">Files will preview here. Permanent public saving needs storage/backend.</p><div class="upload-box"><input id="mediaUpload" type="file" accept="image/*,video/*" multiple><input id="uploadTitle" placeholder="Title"><textarea id="uploadDescription" placeholder="Description"></textarea><button onclick="showUpload()">Show Preview</button><div id="uploadPreview" class="preview"></div></div></section>
+<header>
+  <div class="nav">
+    <div class="logo">Kahani<span>Hub</span></div>
+
+    <nav>
+      <a href="#categories">Categories</a>
+      <a href="#featured">Featured</a>
+      <a href="#story">Story</a>
+      <a href="#news">News</a>
+      <a href="#upload">Upload</a>
+      <a href="#marketplace">Marketplace</a>
+      <a href="#latest-products">Latest Products</a>
+      <a href="#about">About</a>
+      <button id="lang">اردو</button>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="english">STORIES • CREATIVITY • DIGITAL CONTENT</p>
+
+      <h1 class="english">
+        Your world of stories, poetry and imagination.
+      </h1>
+
+      <h1 class="urdu hidden">
+        کہانیوں، شاعری اور تخلیقی صلاحیتوں کی دنیا
+      </h1>
+
+      <p class="english">
+        Discover stories, poetry, music and creative digital products in one beautiful place.
+      </p>
+
+      <p class="urdu hidden">
+        کہانیاں، شاعری، گانے اور تخلیقی مواد ایک ہی جگہ دریافت کریں۔
+      </p>
+
+      <div class="actions">
+        <a class="btn" href="#featured">Explore Stories</a>
+        <a class="btn outline" href="#upload">Upload Image / Video</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      📚 ✨ 🎵
+      <p>Read. Create. Sell.</p>
+    </div>
+  </div>
+</div>
+
+<section id="categories">
+  <h2 class="section-title">Explore Categories</h2>
+
+  <div class="grid">
+    <div class="card">
+      🏛️
+      <h3>History</h3>
+      <p>Historical events and civilizations.</p>
+    </div>
+
+    <div class="card">
+      ✍️
+      <h3>Poetry</h3>
+      <p>Urdu and English poetry.</p>
+    </div>
+
+    <div class="card">
+      🎵
+      <h3>Music & Lyrics</h3>
+      <p>Original songs and ideas.</p>
+    </div>
+
+    <div class="card">
+      📖
+      <h3>Stories</h3>
+      <p>Moral and imaginative stories.</p>
+    </div>
+  </div>
+</section>
+
+<section id="featured">
+  <h2 class="section-title">Featured Content</h2>
+
+  <div class="grid">
+    <div class="card">
+      <b>Story</b>
+      <h3>میری زندگی، میری مرضی ❤️</h3>
+      <p>ایک محبت جو نفرت کو ہرا گئی۔</p>
+      <a class="btn" href="#story">Read More</a>
+    </div>
+
+    <div class="card">
+      <b>Poetry</b>
+      <h3>Dil Ki Baarish</h3>
+      <p>Romantic poetry filled with emotions.</p>
+    </div>
+  </div>
+</section>
+
+<section id="story" class="story-section" dir="rtl">
+  <h1 id="storyTitle">میری زندگی، میری مرضی ❤️</h1>
+
+  <label>زبان منتخب کریں:</label>
+
+  <select id="languageSelect">
+    <option value="ur">اردو</option>
+    <option value="en">English</option>
+    <option value="hi">हिन्दी</option>
+    <option value="sd">سنڌي</option>
+  </select>
+
+  <div id="storyContent"></div>
+</section>
+
+<section id="news" class="market">
+  <h2 class="section-title">Latest News</h2>
+
+  <div class="grid">
+    <div class="card">
+      📰
+      <h3>Technology News</h3>
+      <p>Latest technology, AI and digital world news.</p>
+      <a class="btn" href="#latest-products">Read News</a>
+    </div>
+
+    <div class="card">
+      🌍
+      <h3>World News</h3>
+      <p>Important international news and updates.</p>
+      <a class="btn" href="#news">View Updates</a>
+    </div>
+  </div>
+</section>
+
+<section id="upload">
+  <h2 class="section-title">Upload Image or Video</h2>
+
+  <p class="section-title">
+    Files will preview here. Permanent public saving needs storage/backend.
+  </p>
+
+  <div class="upload-box">
+    <input id="mediaUpload" type="file" accept="image/*,video/*" multiple>
+
+    <input id="uploadTitle" placeholder="Title">
+
+    <textarea id="uploadDescription" placeholder="Description"></textarea>
+
+    <button onclick="showUpload()">Show Preview</button>
+
+    <div id="uploadPreview" class="preview"></div>
+  </div>
+</section>
+
 <section id="marketplace" class="market">
   <h2 class="section-title">Digital Marketplace</h2>
-<a href="#latest-products">Latest Products</a>
+
+  <div class="grid">
+    <div class="card">
+      🖼️
+      <h3>AI Image Pack</h3>
+      <p class="price">💵 $3.00</p>
+    </div>
+
+    <div class="card">
+      🎬
+      <h3>AI Video Pack</h3>
+      <p class="price">💵 $5.00</p>
+    </div>
+
+    <div class="card">
+      🎧
+      <h3>AI Song Collection</h3>
+      <p class="price">💵 $4.00</p>
+    </div>
+  </div>
+</section>
   <div class="grid">
     <div class="card">
       🖼️
