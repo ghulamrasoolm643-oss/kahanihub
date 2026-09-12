@@ -287,41 +287,31 @@
 </body>
 </html>
 <script>
-  function showUpload() {
-    const files = document.getElementById("mediaUpload").files;
-    const title = document.getElementById("uploadTitle").value;
-    const description =
-      document.getElementById("uploadDescription").value;
-    const preview = document.getElementById("uploadPreview");
+  <section id="contact" class="about">
+  <h2>Contact Me</h2>
 
-    preview.innerHTML = "";
+  <p>
+    <strong>Name:</strong> Ghulam Rasool Mirbhar
+  </p>
 
-    if (files.length === 0) {
-      preview.innerHTML = "<p>Please select an image or video.</p>";
-      return;
-    }
+  <p>
+    <strong>Email:</strong>
+    <a href="mailto:ghulamrasoolm643@gmail.com">
+      ✉️ ghulamrasoolm643@gmail.com
+    </a>
+  </p>
 
-    if (title.trim() !== "") {
-      preview.innerHTML += "<h3>" + title + "</h3>";
-    }
-
-    if (description.trim() !== "") {
-      preview.innerHTML += "<p>" + description + "</p>";
-    }
-
-    Array.from(files).forEach(function(file) {
-      const url = URL.createObjectURL(file);
-
-      if (file.type.startsWith("image/")) {
-        preview.innerHTML +=
-          '<img src="' + url + '" alt="Uploaded image">';
-      } else if (file.type.startsWith("video/")) {
-        preview.innerHTML +=
-          '<video controls src="' + url + '"></video>';
-      }
-    });
-  }
-</script>
-
-</body>
+  <p>
+    <strong>WhatsApp:</strong>
+    <a
+      href="https://wa.me/923166604532"
+      target="_blank"
+      rel="noopener"
+    >
+      <span style="color: #25D366; font-size: 24px;">📱</span>
+      03166604532
+    </a>
+  </p>
+</section>
+</body>         
 </html>
