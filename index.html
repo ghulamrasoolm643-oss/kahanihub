@@ -479,41 +479,45 @@
     </div>
   </section>
 
-  <section id="upload">
+<section id="upload">
 
-    <h2 class="section-title">
-      Upload Image or Video
-    </h2>
+  <h2 class="section-title">
+    Upload Image or Video
+  </h2>
 
-    <p class="section-title">
-      Files will preview here. Permanent public saving needs storage/backend.
-    </p>
+  <p class="section-title">
+    Files will preview here. Permanent public saving needs storage/backend.
+  </p>
 
-    <div class="upload-box">
+  <div class="upload-box">
 
-      <input
-        id="mediaUpload"
-        type="file"
-        accept="image/*,video/*"
-        multiple
-      >
+    <label for="mediaUpload">
+      Select Image or Video
+    </label>
 
-      <input
-        id="uploadTitle"
-        type="text"
-        placeholder="Title"
-      >
+    <input
+      id="mediaUpload"
+      type="file"
+      accept="image/*,video/*"
+      multiple
+    >
 
-      <textarea
-        id="uploadDescription"
-        placeholder="Description"
-      ></textarea>
+    <input
+      id="uploadTitle"
+      type="text"
+      placeholder="Title"
+    >
 
-      <button onclick="showUpload()">
-        Show Preview
-      </button>
+    <textarea
+      id="uploadDescription"
+      placeholder="Description"
+    ></textarea>
 
-      <div id="uploadPreview" class="preview"></div>
+    <button onclick="showUpload()">
+      Show Preview
+    </button>
+
+    <div id="uploadPreview" class="preview"></div>
 
     </div>
   </section>
