@@ -1,271 +1,640 @@
+
 <!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KahaniHub - Stories, Poetry & Creativity</title>
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f5f7fb;color:#222;line-height:1.6}header{background:#172554;color:#fff;padding:18px 6%}.nav,nav,.actions{display:flex;gap:15px;align-items:center;flex-wrap:wrap}.nav{justify-content:space-between}.logo{font-size:28px;font-weight:bold}.logo span{color:#facc15}nav a,nav button{color:white;background:none;border:0;text-decoration:none;cursor:pointer;font-size:15px}section,.hero{padding:45px 6%}.hero{background:linear-gradient(135deg,#dbeafe,#fef3c7)}.hero-inner,.grid{max-width:1150px;margin:auto}.hero-inner{display:grid;grid-template-columns:2fr 1fr;gap:25px;align-items:center}h1{font-size:42px}.hero-card,.card,.upload-box,.story-section{background:#fff;border-radius:14px;padding:25px;box-shadow:0 5px 20px #0001}.hero-card{text-align:center;font-size:42px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}.section-title{text-align:center}.btn,button{background:#2563eb;color:white;border:0;padding:11px 17px;border-radius:8px;cursor:pointer}.outline{background:white;color:#2563eb;border:1px solid #2563eb}.urdu{direction:rtl}.hidden{display:none!important}.story-section{max-width:900px;margin:30px auto}.story-section h1{text-align:center;color:#b21f45;font-size:32px}.story-section h2{color:#8e244d}.story-section blockquote{background:#fff1f5;border-right:5px solid #d6336c;padding:12px}.story-section select,.upload-box input,.upload-box textarea{width:100%;padding:12px;margin:10px 0;border:1px solid #ccc;border-radius:8px}.preview{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px}.preview img,.preview video{width:100%;max-height:250px;border-radius:10px}.market{background:#e0f2fe}.about{background:#172554;color:white}.about a{color:#facc15}footer{background:#0f172a;color:white;text-align:center;padding:20px}@media(max-width:700px){.hero-inner{grid-template-columns:1fr}h1{font-size:30px}}
-</style>
-   <style>
-  .price {
-    color: green;
-    font-weight: bold;
-    font-size: 22px;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  .product-btn {
-    display: inline-block;
-    background: #16a34a;
-    color: white;
-    padding: 10px 15px;
-    margin-top: 10px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-<style>
-  .product-btn {
-    display: inline-block;
-    background: #16a34a;
-    color: white;
-    padding: 10px 15px;
-    margin-top: 10px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-  }
+  <title>KahaniHub - Stories, Poetry & Creativity</title>
 
-  .product-btn:hover {
-    background: #15803d;
-  }
-<style>
-.contact-info {
-  margin-top: 20px;
-  padding: 20px;
-  border-radius: 12px;
-  background: #f3f4f6;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-.contact-info h3 {
-  margin-bottom: 15px;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #222;
+      line-height: 1.6;
+    }
 
-.contact-info p {
-  margin: 12px 0;
-}
+    header {
+      background: #172554;
+      color: white;
+      padding: 18px 6%;
+    }
 
-.contact-info a {
-  color: #16a34a;
-  font-weight: bold;
-  text-decoration: none;
-}
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
 
-.contact-info a:hover {
-  text-decoration: underline;
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #facc15;
+    }
+
+    nav {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav a,
+    nav button {
+      color: white;
+      background: none;
+      border: 0;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    nav a:hover {
+      color: #facc15;
+    }
+
+    section,
+    .hero {
+      padding: 45px 6%;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #dbeafe, #fef3c7);
+    }
+
+    .hero-inner {
+      max-width: 1150px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 25px;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 42px;
+    }
+
+    .hero-card,
+    .card,
+    .upload-box,
+    .story-section {
+      background: white;
+      border-radius: 14px;
+      padding: 25px;
+      box-shadow: 0 5px 20px #0001;
+    }
+
+    .hero-card {
+      text-align: center;
+      font-size: 42px;
+    }
+
+    .hero-card p {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .grid {
+      max-width: 1150px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .btn,
+    button {
+      display: inline-block;
+      background: #2563eb;
+      color: white;
+      border: 0;
+      padding: 11px 17px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn:hover,
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .outline {
+      background: white;
+      color: #2563eb;
+      border: 1px solid #2563eb;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .story-section {
+      max-width: 900px;
+      margin: 30px auto;
+    }
+
+    .story-section h1 {
+      text-align: center;
+      color: #b21f45;
+      font-size: 32px;
+    }
+
+    .story-section h2 {
+      color: #8e244d;
+    }
+
+    .story-section select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .story-content {
+      margin-top: 20px;
+    }
+
+    .story-content p {
+      background: #fff1f5;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .upload-box input,
+    .upload-box textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+    }
+
+    .upload-box textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .preview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .preview img,
+    .preview video {
+      width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #f1f5f9;
+    }
+
+    .market {
+      background: #e0f2fe;
+    }
+
+    .price {
+      color: green;
+      font-weight: bold;
+      font-size: 22px;
+    }
+
+    .product-btn {
+      display: inline-block;
+      background: #16a34a;
+      color: white;
+      padding: 10px 15px;
+      margin-top: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .product-btn:hover {
+      background: #15803d;
+    }
+
+    .about {
+      background: #172554;
+      color: white;
+    }
+
+    .about a {
+      color: #facc15;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .about a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-info {
+      margin-top: 25px;
+      padding: 20px;
+      border-radius: 12px;
+      background: #1e3a8a;
+    }
+
+    .contact-info h3 {
+      margin-top: 0;
+      color: #facc15;
+    }
+
+    .contact-info p {
+      margin: 14px 0;
+    }
+
+    .contact-icon {
+      font-size: 24px;
+      margin-right: 8px;
+    }
+
+    footer {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 700px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
       }
-</style>
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .logo {
+        font-size: 24px;
+      }
+
+      nav {
+        gap: 10px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<header>
-  <div class="nav">
-    <div class="logo">Kahani<span>Hub</span></div>
 
-    <nav>
-      <a href="#categories">Categories</a>
-      <a href="#featured">Featured</a>
-      <a href="#story">Story</a>
-      <a href="#news">News</a>
-      <a href="#upload">Upload</a>
-      <a href="#marketplace">Marketplace</a>
-      <a href="#latest-products">Latest Products</a>
-      <a href="#about">About</a>
-      <button id="lang">اردو</button>
-    </nav>
-  </div>
-</header>
+  <header>
+    <div class="nav">
 
-<div class="hero">
-  <div class="hero-inner">
-    <div>
-      <p class="english">STORIES • CREATIVITY • DIGITAL CONTENT</p>
-
-      <h1 class="english">
-        Your world of stories, poetry and imagination.
-      </h1>
-
-      <h1 class="urdu hidden">
-        کہانیوں، شاعری اور تخلیقی صلاحیتوں کی دنیا
-      </h1>
-
-      <p class="english">
-        Discover stories, poetry, music and creative digital products in one beautiful place.
-      </p>
-
-      <p class="urdu hidden">
-        کہانیاں، شاعری، گانے اور تخلیقی مواد ایک ہی جگہ دریافت کریں۔
-      </p>
-
-      <div class="actions">
-        <a class="btn" href="#featured">Explore Stories</a>
-        <a class="btn outline" href="#upload">Upload Image / Video</a>
+      <div class="logo">
+        Kahani<span>Hub</span>
       </div>
+
+      <nav>
+        <a href="#categories">Categories</a>
+        <a href="#featured">Featured</a>
+        <a href="#story">Story</a>
+        <a href="#news">News</a>
+        <a href="#upload">Upload</a>
+        <a href="#marketplace">Marketplace</a>
+        <a href="#latest-products">Latest Products</a>
+        <a href="#about">About</a>
+        <button id="lang">اردو</button>
+      </nav>
+
     </div>
+  </header>
 
-    <div class="hero-card">
-      📚 ✨ 🎵
-      <p>Read. Create. Sell.</p>
-    </div>
-  </div>
-</div>
+  <div class="hero">
+    <div class="hero-inner">
 
-<section id="categories">
-  <h2 class="section-title">Explore Categories</h2>
+      <div>
+        <p class="english">
+          STORIES • CREATIVITY • DIGITAL CONTENT
+        </p>
 
-  <div class="grid">
-    <div class="card">
-      🏛️
-      <h3>History</h3>
-      <p>Historical events and civilizations.</p>
-    </div>
+        <h1 class="english">
+          Your world of stories, poetry and imagination.
+        </h1>
 
-    <div class="card">
-      ✍️
-      <h3>Poetry</h3>
-      <p>Urdu and English poetry.</p>
-    </div>
+        <h1 class="urdu hidden">
+          کہانیوں، شاعری اور تخلیقی صلاحیتوں کی دنیا
+        </h1>
 
-    <div class="card">
-      🎵
-      <h3>Music & Lyrics</h3>
-      <p>Original songs and ideas.</p>
-    </div>
+        <p class="english">
+          Discover stories, poetry, music and creative digital products
+          in one beautiful place.
+        </p>
 
-    <div class="card">
-      📖
-      <h3>Stories</h3>
-      <p>Moral and imaginative stories.</p>
-    </div>
-  </div>
-</section>
+        <p class="urdu hidden">
+          کہانیاں، شاعری، گانے اور تخلیقی مواد ایک ہی جگہ دریافت کریں۔
+        </p>
 
-<section id="featured">
-  <h2 class="section-title">Featured Content</h2>
+        <div class="actions">
+          <a class="btn" href="#featured">
+            Explore Stories
+          </a>
 
-  <div class="grid">
-    <div class="card">
-      <b>Story</b>
-      <h3>میری زندگی، میری مرضی ❤️</h3>
-      <p>ایک محبت جو نفرت کو ہرا گئی۔</p>
-      <a class="btn" href="#story">Read More</a>
-    </div>
+          <a class="btn outline" href="#upload">
+            Upload Image / Video
+          </a>
+        </div>
+      </div>
 
-    <div class="card">
-      <b>Poetry</b>
-      <h3>Dil Ki Baarish</h3>
-      <p>Romantic poetry filled with emotions.</p>
-    </div>
-  </div>
-</section>
+      <div class="hero-card">
+        📚 ✨ 🎵
+        <p>Read. Create. Sell.</p>
+      </div>
 
-<section id="story" class="story-section" dir="rtl">
-  <h1 id="storyTitle">میری زندگی، میری مرضی ❤️</h1>
-
-  <label>زبان منتخب کریں:</label>
-
-  <select id="languageSelect">
-    <option value="ur">اردو</option>
-    <option value="en">English</option>
-    <option value="hi">हिन्दी</option>
-    <option value="sd">سنڌي</option>
-  </select>
-
-  <div id="storyContent"></div>
-</section>
-
-<section id="news" class="market">
-  <h2 class="section-title">Latest News</h2>
-
-  <div class="grid">
-    <div class="card">
-      📰
-      <h3>Technology News</h3>
-      <p>Latest technology, AI and digital world news.</p>
-      <a class="btn" href="#latest-products">Read News</a>
-    </div>
-
-    <div class="card">
-      🌍
-      <h3>World News</h3>
-      <p>Important international news and updates.</p>
-      <a class="btn" href="#news">View Updates</a>
     </div>
   </div>
-</section>
 
-<section id="upload">
-  <h2 class="section-title">Upload Image or Video</h2>
+  <section id="categories">
+    <h2 class="section-title">Explore Categories</h2>
 
-  <p class="section-title">
-    Files will preview here. Permanent public saving needs storage/backend.
-  </p>
+    <div class="grid">
 
-  <div class="upload-box">
-    <input
-      id="mediaUpload"
-      type="file"
-      accept="image/*,video/*"
-      multiple
-    >
+      <div class="card">
+        🏛️
+        <h3>History</h3>
+        <p>Historical events and civilizations.</p>
+      </div>
 
-    <input
-      id="uploadTitle"
-      type="text"
-      placeholder="Title"
-    >
+      <div class="card">
+        ✍️
+        <h3>Poetry</h3>
+        <p>Urdu and English poetry.</p>
+      </div>
 
-    <textarea
-      id="uploadDescription"
-      placeholder="Description"
-    ></textarea>
-    <button onclick="showUpload()">Show Preview</button>
+      <div class="card">
+        🎵
+        <h3>Music & Lyrics</h3>
+        <p>Original songs and ideas.</p>
+      </div>
 
-    <div id="uploadPreview" class="preview"></div>
-  </div>
-</section>
-<section id="marketplace" class="market">
-  <h2 class="section-title">Digital Marketplace</h2>
+      <div class="card">
+        📖
+        <h3>Stories</h3>
+        <p>Moral and imaginative stories.</p>
+      </div>
 
-  <div class="grid">
-    <div class="card">
-      🖼️
-      <h3>AI Image Pack</h3>
-      <p class="price">💵 $3.00</p>
     </div>
+  </section>
 
-    <div class="card">
-      🎬
-      <h3>AI Video Pack</h3>
-      <p class="price">💵 $5.00</p>
-    </div>
+  <section id="featured">
+    <h2 class="section-title">Featured Content</h2>
 
-    <div class="card">
-      🎧
-      <h3>AI Song Collection</h3>
-      <p class="price">💵 $4.00</p>
+    <div class="grid">
+
+      <div class="card">
+        <b>Story</b>
+        <h3>میری زندگی، میری مرضی ❤️</h3>
+        <p>ایک محبت جو نفرت کو ہرا گئی۔</p>
+        <a class="btn" href="#story">Read More</a>
+      </div>
+
+      <div class="card">
+        <b>Poetry</b>
+        <h3>Dil Ki Baarish</h3>
+        <p>Romantic poetry filled with emotions.</p>
+      </div>
+
     </div>
-  </div>
-</section>
-  <div class="grid">
-            </div>
+  </section>
+
+  <section id="story" class="story-section" dir="rtl">
+
+    <h1 id="storyTitle">
+      میری زندگی، میری مرضی ❤️
+    </h1>
+
+    <label for="languageSelect">
+      زبان منتخب کریں:
+    </label>
+
+    <select id="languageSelect">
+      <option value="ur">اردو</option>
+      <option value="en">English</option>
+      <option value="hi">हिन्दी</option>
+      <option value="sd">سنڌي</option>
+    </select>
+
+    <div id="storyContent" class="story-content"></div>
+
+  </section>
+
+  <section id="news" class="market">
+
+    <h2 class="section-title">Latest News</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        📰
+        <h3>Technology News</h3>
+        <p>
+          Latest technology, AI and digital world news.
+        </p>
+        <a class="btn" href="#latest-products">
+          Read News
+        </a>
+      </div>
+
+      <div class="card">
+        🌍
+        <h3>World News</h3>
+        <p>
+          Important international news and updates.
+        </p>
+        <a class="btn" href="#news">
+          View Updates
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="upload">
+
+    <h2 class="section-title">
+      Upload Image or Video
+    </h2>
+
+    <p class="section-title">
+      Files will preview here. Permanent public saving needs storage/backend.
+    </p>
+
+    <div class="upload-box">
+
+      <input
+        id="mediaUpload"
+        type="file"
+        accept="image/*,video/*"
+        multiple
+      >
+
+      <input
+        id="uploadTitle"
+        type="text"
+        placeholder="Title"
+      >
+
+      <textarea
+        id="uploadDescription"
+        placeholder="Description"
+      ></textarea>
+
+      <button onclick="showUpload()">
+        Show Preview
+      </button>
+
+      <div id="uploadPreview" class="preview"></div>
+
+    </div>
+  </section>
+
+  <section id="marketplace" class="market">
+
+    <h2 class="section-title">
+      Digital Marketplace
+    </h2>
+
+    <div class="grid">
+
+      <div class="card">
+        🖼️
+        <h3>AI Image Pack</h3>
+        <p class="price">💵 $3.00</p>
+        <a class="product-btn" href="#about">
+          Get Now
+        </a>
+      </div>
+
+      <div class="card">
+        🎬
+        <h3>AI Video Pack</h3>
+        <p class="price">💵 $5.00</p>
+        <a class="product-btn" href="#about">
+          Get Now
+        </a>
+      </div>
+
+      <div class="card">
+        🎧
+        <h3>AI Song Collection</h3>
+        <p class="price">💵 $4.00</p>
+        <a class="product-btn" href="#about">
+          Get Now
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="latest-products">
+
+    <h2 class="section-title">
+      Latest Products
+    </h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>Romantic Story Pack</h3>
+        <p>
+          Beautiful romantic stories and poetry.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>AI Thumbnail Pack</h3>
+        <p>
+          Professional thumbnails for YouTube videos.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Digital Creator Pack</h3>
+        <p>
+          Creative digital content for creators.
+        </p>
+      </div>
+
+    </div>
   </section>
 
   <section id="about" class="about">
+
     <h2>About KahaniHub</h2>
+
     <p>
-      KahaniHub is a creative platform for stories, AI images, AI videos,
-      AI songs and digital content.
+      Welcome to KahaniHub — your creative world of stories, poetry,
+      AI images, AI videos, AI songs and digital content.
     </p>
+
+    <p>
+      KahaniHub is created and managed by Ghulam Rasool Mallah.
+      Our mission is to share creativity, entertainment and digital
+      content with everyone.
+    </p>
+
+    <div class="contact-info">
+
+      <h3>Contact Me</h3>
+
+      <p>
+        <span class="contact-icon">👤</span>
+        <strong>Name:</strong>
+        Ghulam Rasool Mallah
+      </p>
+
+      <p>
+        <span class="contact-icon">✉️</span>
+        <strong>Email:</strong>
+        <a href="mailto:ghulamrasoolm643@gmail.com">
+          ghulamrasoolm643@gmail.com
+        </a>
+      </p>
+
+      <p>
+        <span class="contact-icon">📱</span>
+        <strong>WhatsApp:</strong>
+        <a
+          href="https://wa.me/923166604532"
+          target="_blank"
+          rel="noopener"
+        >
+          03166604532
+        </a>
+      </p>
+
+    </div>
+
   </section>
 
   <footer>
@@ -273,93 +642,160 @@
   </footer>
 
   <script>
+    const stories = {
+      ur: {
+        title: "میری زندگی، میری مرضی ❤️",
+        text: `
+          <h2>میری زندگی، میری مرضی</h2>
+          <p>
+            یہ ایک ایسی محبت کی کہانی ہے جس نے نفرت، غلط فہمیوں
+            اور مشکلات کو شکست دی۔ سچی محبت ہمیشہ عزت، اعتماد
+            اور سمجھداری کا راستہ دکھاتی ہے۔
+          </p>
+        `
+      },
+
+      en: {
+        title: "My Life, My Choice ❤️",
+        text: `
+          <h2>My Life, My Choice</h2>
+          <p>
+            This is a story of love that defeated hatred,
+            misunderstandings and difficulties. True love
+            always teaches respect, trust and understanding.
+          </p>
+        `
+      },
+
+      hi: {
+        title: "मेरी ज़िंदगी, मेरी मर्ज़ी ❤️",
+        text: `
+          <h2>मेरी ज़िंदगी, मेरी मर्ज़ी</h2>
+          <p>
+            यह एक ऐसी प्रेम कहानी है जिसने नफरत, गलतफहमियों
+            और मुश्किलों को हरा दिया। सच्चा प्यार सम्मान,
+            भरोसा और समझदारी सिखाता है।
+          </p>
+        `
+      },
+
+      sd: {
+        title: "منهنجي زندگي، منهنجي مرضي ❤️",
+        text: `
+          <h2>منهنجي زندگي، منهنجي مرضي</h2>
+          <p>
+            هي محبت جي هڪ اهڙي ڪهاڻي آهي، جنهن نفرت،
+            غلط فهمين ۽ مشڪلاتن کي شڪست ڏني.
+            سچي محبت عزت، اعتماد ۽ سمجهه سيکاري ٿي.
+          </p>
+        `
+      }
+    };
+
+    const languageSelect =
+      document.getElementById("languageSelect");
+
+    const storyTitle =
+      document.getElementById("storyTitle");
+
+    const storyContent =
+      document.getElementById("storyContent");
+
+    function showStory(language) {
+      const story = stories[language] || stories.ur;
+
+      storyTitle.textContent = story.title;
+      storyContent.innerHTML = story.text;
+    }
+
+    languageSelect.addEventListener("change", function() {
+      showStory(this.value);
+    });
+
+    showStory("ur");
+
+    const langButton =
+      document.getElementById("lang");
+
+    let urduMode = false;
+
+    langButton.addEventListener("click", function() {
+      urduMode = !urduMode;
+
+      document.querySelectorAll(".english").forEach(function(element) {
+        element.classList.toggle("hidden", urduMode);
+      });
+
+      document.querySelectorAll(".urdu").forEach(function(element) {
+        element.classList.toggle("hidden", !urduMode);
+      });
+
+      langButton.textContent = urduMode ? "English" : "اردو";
+    });
+
     function showUpload() {
-      const files = document.getElementById("mediaUpload").files;
-      const title = document.getElementById("uploadTitle").value;
+      const files =
+        document.getElementById("mediaUpload").files;
+
+      const title =
+        document.getElementById("uploadTitle").value;
+
       const description =
         document.getElementById("uploadDescription").value;
-      const preview = document.getElementById("uploadPreview");
+
+      const preview =
+        document.getElementById("uploadPreview");
 
       preview.innerHTML = "";
 
       if (files.length === 0) {
-        preview.innerHTML = "<p>Please select an image or video.</p>";
+        preview.innerHTML =
+          "<p>Please select an image or video.</p>";
         return;
       }
 
       if (title.trim() !== "") {
-        preview.innerHTML += "<h3>" + title + "</h3>";
+        const titleElement =
+          document.createElement("h3");
+
+        titleElement.textContent = title;
+        preview.appendChild(titleElement);
       }
 
       if (description.trim() !== "") {
-        preview.innerHTML += "<p>" + description + "</p>";
+        const descriptionElement =
+          document.createElement("p");
+
+        descriptionElement.textContent = description;
+        preview.appendChild(descriptionElement);
       }
 
       Array.from(files).forEach(function(file) {
-        const url = URL.createObjectURL(file);
+        const fileURL =
+          URL.createObjectURL(file);
 
         if (file.type.startsWith("image/")) {
-          preview.innerHTML +=
-            '<img src="' + url + '" alt="Uploaded image">';
-        } else if (file.type.startsWith("video/")) {
-          preview.innerHTML +=
-            '<video controls src="' + url + '"></video>';
+          const image =
+            document.createElement("img");
+
+          image.src = fileURL;
+          image.alt = "Uploaded image";
+
+          preview.appendChild(image);
+        }
+
+        if (file.type.startsWith("video/")) {
+          const video =
+            document.createElement("video");
+
+          video.src = fileURL;
+          video.controls = true;
+
+          preview.appendChild(video);
         }
       });
     }
   </script>
 
 </body>
-</html>
-<script>
-.contact-info {
-  margin-top: 20px;
-  padding: 20px;
-  border-radius: 12px;
-  background: #f3f4f6;
-}
-
-.contact-info h3 {
-  margin-bottom: 15px;
-}
-
-.contact-info p {
-  margin: 12px 0;
-}
-
-.contact-info a {
-  color: #16a34a;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.contact-info a:hover {
-  text-decoration: underline;
-}
-  <h2>Contact Me</h2>
-
-  <p>
-    <strong>Name:</strong> Ghulam Rasool Mirbhar
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <a href="mailto:ghulamrasoolm643@gmail.com">
-      ✉️ ghulamrasoolm643@gmail.com
-    </a>
-  </p>
-
-  <p>
-    <strong>WhatsApp:</strong>
-    <a
-      href="https://wa.me/923166604532"
-      target="_blank"
-      rel="noopener"
-    >
-      <span style="color: #25D366; font-size: 24px;">📱</span>
-      03166604532
-    </a>
-  </p>
-</section>
-</body>         
 </html>
