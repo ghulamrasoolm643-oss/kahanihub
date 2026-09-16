@@ -1364,8 +1364,164 @@
             supabaseClient
               .storage
               .from("kahanihub-media")
+    async function uploadFiles() {
+
+      const files =
+        document.getElementById(
+          "mediaUpload"
+        ).files;
+
+
+      const title =
+        document.getElementById(
+          "uploadTitle"
+        ).value.trim();
+
+
+      const description =
+        document.getElementById(
+          "uploadDescription"
+        ).value.trim();
+
+
+      if (!files.length) {
+
+        showStatus(
+          "Please select an image or video first.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      if (!title) {
+
+        showStatus(
+          "Please enter a title.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      const uploadButton =
+        document.getElementById(
+          "uploadButton"
+        );
+
+
+      uploadButton.disabled =
+        true;
+
+
+      uploadButton.innerHTML =
+        '<i class="fa-solid fa-spinner fa-spin"></i> Uploading...';
+
+
+      try {
+
+        for (
+          const file of Array.from(files)
+        ) {
+
+
+          /* Clean file name */
+
+          const cleanName =
+            file.name.replace(
+              /[^a-zA-Z0-9._-]/g,
+              "-"
+            );
+
+
+          /* Create unique file name */
+
+          const uniqueName =
+            Date.now() +
+            "-" +
+            crypto.randomUUID() +
+            "-" +
+            cleanName;
+
+
+          /* =========================
+             UPLOAD FILE
+          ========================= */
+
+          const {
+            data: uploadData,
+            error: uploadError
+          } =
+            await supabaseClient
+              .storage
+              .from(
+                "kahanihub-media"
+              )
+              .upload(
+                uniqueName,
+                file,
+                {
+                  cacheControl:
+                    "3600",
+
+                  upsert:
+                    false,
+
+                  contentType:
+                    file.type
+                }
+              );
+
+
+          if (uploadError) {
+
+            console.error(
+              "FULL UPLOAD ERROR:",
+              uploadError
+            );
+
+
+            showStatus(
+              "❌ Upload failed: " +
+              (
+                uploadError.message ||
+                "Unknown error"
+              ) +
+              " | Code: " +
+              (
+                uploadError.statusCode ||
+                "N/A"
+              ),
+              "error"
+            );
+
+
+            return;
+          }
+
+
+          console.log(
+            "Upload successful:",
+            uploadData
+          );
+
+
+          /* =========================
+             GET PUBLIC URL
+          ========================= */
+
+          const {
+            data: publicData
+          } =
+            supabaseClient
+              .storage
+              .from(
+                "kahanihub-media"
+              )
               .getPublicUrl(
-                filePath
+                uniqueName
               );
 
 
@@ -1373,13 +1529,24 @@
             publicData.publicUrl;
 
 
-          /* Save information in database */
+          console.log(
+            "Public URL:",
+            publicURL
+          );
+
+
+          /* =========================
+             SAVE TO DATABASE
+          ========================= */
 
           const {
+            data: databaseData,
             error: databaseError
           } =
             await supabaseClient
-              .from("media_posts")
+              .from(
+                "media_posts"
+              )
               .insert({
 
                 title:
@@ -1397,17 +1564,43 @@
                 file_type:
                   file.type
 
-              });
+              })
+              .select();
 
 
           if (databaseError) {
 
-            throw databaseError;
+            console.error(
+              "DATABASE ERROR:",
+              databaseError
+            );
 
+
+            showStatus(
+              "❌ File uploaded, but database save failed: " +
+              (
+                databaseError.message ||
+                "Unknown database error"
+              ),
+              "error"
+            );
+
+
+            return;
           }
+
+
+          console.log(
+            "Database record created:",
+            databaseData
+          );
 
         }
 
+
+        /* =========================
+           SUCCESS
+        ========================= */
 
         showStatus(
           "✅ Upload successful! Your content is now public on KahaniHub.",
@@ -1451,23 +1644,28 @@
       } catch (error) {
 
         console.error(
-          "Upload error:",
+          "COMPLETE UPLOAD ERROR:",
           error
         );
 
 
         showStatus(
           "❌ Upload failed: " +
-          (error.message ||
-            "Unknown error"),
+          (
+            error.message ||
+            "Unknown error"
+          ),
           "error"
         );
 
       }
 
 
+      /* Restore button */
+
       uploadButton.disabled =
         false;
+
 
       uploadButton.innerHTML =
         '<i class="fa-solid fa-cloud-arrow-up"></i> Upload Permanently';
