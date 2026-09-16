@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 
@@ -7,6 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>KahaniHub - Stories, Poetry & Creativity</title>
+
+  <!-- Font Awesome for WhatsApp / Facebook icons -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     * {
@@ -285,22 +291,136 @@
     .hidden {
       display: none !important;
     }
-.upload-box label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 8px;
-  color: #172554;
-}
 
-.upload-box input[type="file"] {
-  display: block;
-  width: 100%;
-  padding: 14px;
-  margin: 10px 0 18px;
-  background: #f8fafc;
-  border: 2px dashed #2563eb;
-  border-radius: 10px;
-  cursor: pointer;
+    .upload-box label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #172554;
+    }
+
+    .upload-box input[type="file"] {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0 18px;
+      background: #f8fafc;
+      border: 2px dashed #2563eb;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    /* Uploaded content */
+
+    #publicGallery {
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .media-card {
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px #0001;
+    }
+
+    .media-card img,
+    .media-card video {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+      background: #e5e7eb;
+    }
+
+    .media-info {
+      padding: 18px;
+    }
+
+    .media-info h3 {
+      margin-top: 0;
+      color: #172554;
+    }
+
+    .media-info p {
+      color: #555;
+    }
+
+    .share-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .share-buttons a,
+    .share-buttons button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      color: white;
+      text-decoration: none;
+      border: 0;
+      font-size: 14px;
+    }
+
+    .whatsapp-btn {
+      background: #25D366 !important;
+    }
+
+    .facebook-btn {
+      background: #1877F2 !important;
+    }
+
+    .native-share-btn {
+      background: #2563eb !important;
+    }
+
+    .copy-btn {
+      background: #475569 !important;
+    }
+
+    .status {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      display: none;
+      font-weight: bold;
+    }
+
+    .status.success {
+      display: block;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status.error {
+      display: block;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 25px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 700px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      nav {
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -328,6 +448,7 @@
 
     </div>
   </header>
+
 
   <div class="hero">
     <div class="hero-inner">
@@ -373,8 +494,12 @@
     </div>
   </div>
 
+
   <section id="categories">
-    <h2 class="section-title">Explore Categories</h2>
+
+    <h2 class="section-title">
+      Explore Categories
+    </h2>
 
     <div class="grid">
 
@@ -403,28 +528,52 @@
       </div>
 
     </div>
+
   </section>
 
+
   <section id="featured">
-    <h2 class="section-title">Featured Content</h2>
+
+    <h2 class="section-title">
+      Featured Content
+    </h2>
 
     <div class="grid">
 
       <div class="card">
         <b>Story</b>
-        <h3>میری زندگی، میری مرضی ❤️</h3>
-        <p>ایک محبت جو نفرت کو ہرا گئی۔</p>
-        <a class="btn" href="#story">Read More</a>
+
+        <h3>
+          میری زندگی، میری مرضی ❤️
+        </h3>
+
+        <p>
+          ایک محبت جو نفرت کو ہرا گئی۔
+        </p>
+
+        <a class="btn" href="#story">
+          Read More
+        </a>
       </div>
 
       <div class="card">
+
         <b>Poetry</b>
-        <h3>Dil Ki Baarish</h3>
-        <p>Romantic poetry filled with emotions.</p>
+
+        <h3>
+          Dil Ki Baarish
+        </h3>
+
+        <p>
+          Romantic poetry filled with emotions.
+        </p>
+
       </div>
 
     </div>
+
   </section>
+
 
   <section id="story" class="story-section" dir="rtl">
 
@@ -437,89 +586,149 @@
     </label>
 
     <select id="languageSelect">
-      <option value="ur">اردو</option>
-      <option value="en">English</option>
-      <option value="hi">हिन्दी</option>
-      <option value="sd">سنڌي</option>
+
+      <option value="ur">
+        اردو
+      </option>
+
+      <option value="en">
+        English
+      </option>
+
+      <option value="hi">
+        हिन्दी
+      </option>
+
+      <option value="sd">
+        سنڌي
+      </option>
+
     </select>
 
     <div id="storyContent" class="story-content"></div>
 
   </section>
 
+
   <section id="news" class="market">
 
-    <h2 class="section-title">Latest News</h2>
+    <h2 class="section-title">
+      Latest News
+    </h2>
 
     <div class="grid">
 
       <div class="card">
+
         📰
-        <h3>Technology News</h3>
+
+        <h3>
+          Technology News
+        </h3>
+
         <p>
           Latest technology, AI and digital world news.
         </p>
+
         <a class="btn" href="#latest-products">
           Read News
         </a>
+
       </div>
 
       <div class="card">
+
         🌍
-        <h3>World News</h3>
+
+        <h3>
+          World News
+        </h3>
+
         <p>
           Important international news and updates.
         </p>
+
         <a class="btn" href="#news">
           View Updates
         </a>
+
       </div>
 
     </div>
+
   </section>
 
-<section id="upload">
 
-  <h2 class="section-title">
-    Upload Image or Video
-  </h2>
+  <!-- UPLOAD -->
 
-  <p class="section-title">
-    Files will preview here. Permanent public saving needs storage/backend.
-  </p>
+  <section id="upload">
 
-  <div class="upload-box">
+    <h2 class="section-title">
+      Upload Image or Video
+    </h2>
 
-    <label for="mediaUpload">
-      Select Image or Video
-    </label>
+    <p class="section-title">
+      Upload your image or video and save it permanently on KahaniHub.
+    </p>
 
-    <input
-      id="mediaUpload"
-      type="file"
-      accept="image/*,video/*"
-      multiple
-    >
+    <div class="upload-box">
 
-    <input
-      id="uploadTitle"
-      type="text"
-      placeholder="Title"
-    >
+      <label for="mediaUpload">
+        Select Image or Video
+      </label>
 
-    <textarea
-      id="uploadDescription"
-      placeholder="Description"
-    ></textarea>
+      <input
+        id="mediaUpload"
+        type="file"
+        accept="image/*,video/*"
+        multiple
+      >
 
-    <button onclick="showUpload()">
-      Show Preview
-    </button>
+      <input
+        id="uploadTitle"
+        type="text"
+        placeholder="Title"
+      >
 
-    <div id="uploadPreview" class="preview"></div>
+      <textarea
+        id="uploadDescription"
+        placeholder="Description"
+      ></textarea>
+
+      <button id="uploadButton">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        Upload Permanently
+      </button>
+
+      <div id="uploadStatus" class="status"></div>
+
+      <div id="uploadPreview" class="preview"></div>
 
     </div>
+
   </section>
+
+
+  <!-- PUBLIC GALLERY -->
+
+  <section id="gallery">
+
+    <h2 class="section-title">
+      Latest Public Content
+    </h2>
+
+    <div id="publicGallery" class="grid">
+
+      <div class="loading">
+        Loading content...
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- MARKETPLACE -->
 
   <section id="marketplace" class="market">
 
@@ -530,34 +739,65 @@
     <div class="grid">
 
       <div class="card">
+
         🖼️
-        <h3>AI Image Pack</h3>
-        <p class="price">💵 $3.00</p>
+
+        <h3>
+          AI Image Pack
+        </h3>
+
+        <p class="price">
+          💵 $3.00
+        </p>
+
         <a class="product-btn" href="#about">
           Get Now
         </a>
+
       </div>
 
       <div class="card">
+
         🎬
-        <h3>AI Video Pack</h3>
-        <p class="price">💵 $5.00</p>
+
+        <h3>
+          AI Video Pack
+        </h3>
+
+        <p class="price">
+          💵 $5.00
+        </p>
+
         <a class="product-btn" href="#about">
           Get Now
         </a>
+
       </div>
 
       <div class="card">
+
         🎧
-        <h3>AI Song Collection</h3>
-        <p class="price">💵 $4.00</p>
+
+        <h3>
+          AI Song Collection
+        </h3>
+
+        <p class="price">
+          💵 $4.00
+        </p>
+
         <a class="product-btn" href="#about">
           Get Now
         </a>
+
       </div>
 
     </div>
+
   </section>
+
+
+  <!-- LATEST PRODUCTS -->
 
   <section id="latest-products">
 
@@ -568,32 +808,53 @@
     <div class="grid">
 
       <div class="card">
-        <h3>Romantic Story Pack</h3>
+
+        <h3>
+          Romantic Story Pack
+        </h3>
+
         <p>
           Beautiful romantic stories and poetry.
         </p>
+
       </div>
 
       <div class="card">
-        <h3>AI Thumbnail Pack</h3>
+
+        <h3>
+          AI Thumbnail Pack
+        </h3>
+
         <p>
           Professional thumbnails for YouTube videos.
         </p>
+
       </div>
 
       <div class="card">
-        <h3>Digital Creator Pack</h3>
+
+        <h3>
+          Digital Creator Pack
+        </h3>
+
         <p>
           Creative digital content for creators.
         </p>
+
       </div>
 
     </div>
+
   </section>
+
+
+  <!-- ABOUT -->
 
   <section id="about" class="about">
 
-    <h2>About KahaniHub</h2>
+    <h2>
+      About KahaniHub
+    </h2>
 
     <p>
       Welcome to KahaniHub — your creative world of stories, poetry,
@@ -608,7 +869,9 @@
 
     <div class="contact-info">
 
-      <h3>Contact Me</h3>
+      <h3>
+        Contact Me
+      </h3>
 
       <p>
         <span class="contact-icon">👤</span>
@@ -617,76 +880,175 @@
       </p>
 
       <p>
-        <span class="contact-icon">✉️</span>
-        <strong>Email:</strong>
+
+        <span class="contact-icon">
+          ✉️
+        </span>
+
+        <strong>
+          Email:
+        </strong>
+
         <a href="mailto:ghulamrasoolm643@gmail.com">
           ghulamrasoolm643@gmail.com
         </a>
+
       </p>
 
+      <!-- WhatsApp -->
+
       <p>
-  <a
-    href="https://wa.me/923166604532"
-    target="_blank"
-    rel="noopener"
-    aria-label="Contact me on WhatsApp"
-    title="Contact me on WhatsApp"
-    style="font-size: 32px;"
-  >
-    📱
-  </a>
-</p>
+
+        <a
+          href="https://wa.me/923166604532"
+          target="_blank"
+          rel="noopener"
+          aria-label="Contact me on WhatsApp"
+          title="Contact me on WhatsApp"
+          style="
+          font-size:22px;
+          color:white;
+          background:#25D366;
+          padding:10px 15px;
+          border-radius:10px;
+          display:inline-flex;
+          align-items:center;
+          gap:8px;
+          "
+        >
+
+          <i class="fa-brands fa-whatsapp"></i>
+
+          WhatsApp
+
+        </a>
+
+      </p>
+
+
+      <!-- Temporary Facebook -->
+
+      <p>
+
+        <a
+          href="#"
+          onclick="openFacebookPage(event)"
+          style="
+          font-size:22px;
+          color:white;
+          background:#1877F2;
+          padding:10px 15px;
+          border-radius:10px;
+          display:inline-flex;
+          align-items:center;
+          gap:8px;
+          "
+        >
+
+          <i class="fa-brands fa-facebook"></i>
+
+          Facebook
+
+        </a>
+
+      </p>
 
     </div>
 
   </section>
 
+
   <footer>
-    © 2026 KahaniHub. All Rights Reserved.
+
+    © 2026 KahaniHub.
+    All Rights Reserved.
+
   </footer>
 
+
   <script>
+
+    /* =====================================================
+       SUPABASE CONNECTION
+    ===================================================== */
+
+    const SUPABASE_URL =
+      "https://seewwheiyuckrcnpehec.supabase.co";
+
+    const SUPABASE_ANON_KEY =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNlZXc3aGVpeXVja3JjbnBlaGVjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk0Njc0NTEsImV4cCI6MjEwNTA0MzQ1MX0.dmtOoM1Tipbuf8wPe6Xz2eRxkro9rwV8hxh2lbPwZfo";
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+      );
+
+
+    /* =====================================================
+       STORIES
+    ===================================================== */
+
     const stories = {
+
       ur: {
-        title: "میری زندگی، میری مرضی ❤️",
+
+        title:
+          "میری زندگی، میری مرضی ❤️",
+
         text: `
           <h2>میری زندگی، میری مرضی</h2>
+
           <p>
-            یہ ایک ایسی محبت کی کہانی ہے جس نے نفرت، غلط فہمیوں
-            اور مشکلات کو شکست دی۔ سچی محبت ہمیشہ عزت، اعتماد
-            اور سمجھداری کا راستہ دکھاتی ہے۔
+            یہ ایک ایسی محبت کی کہانی ہے جس نے نفرت،
+            غلط فہمیوں اور مشکلات کو شکست دی۔
+            سچی محبت ہمیشہ عزت، اعتماد اور سمجھداری
+            کا راستہ دکھاتی ہے۔
           </p>
         `
       },
 
       en: {
-        title: "My Life, My Choice ❤️",
+
+        title:
+          "My Life, My Choice ❤️",
+
         text: `
           <h2>My Life, My Choice</h2>
+
           <p>
             This is a story of love that defeated hatred,
-            misunderstandings and difficulties. True love
-            always teaches respect, trust and understanding.
+            misunderstandings and difficulties.
+            True love always teaches respect,
+            trust and understanding.
           </p>
         `
       },
 
       hi: {
-        title: "मेरी ज़िंदगी, मेरी मर्ज़ी ❤️",
+
+        title:
+          "मेरी ज़िंदगी, मेरी मर्ज़ी ❤️",
+
         text: `
           <h2>मेरी ज़िंदगी, मेरी मर्ज़ी</h2>
+
           <p>
-            यह एक ऐसी प्रेम कहानी है जिसने नफरत, गलतफहमियों
-            और मुश्किलों को हरा दिया। सच्चा प्यार सम्मान,
-            भरोसा और समझदारी सिखाता है।
+            यह एक ऐसी प्रेम कहानी है जिसने नफरत,
+            गलतफहमियों और मुश्किलों को हरा दिया।
+            सच्चा प्यार सम्मान, भरोसा और समझदारी सिखाता है।
           </p>
         `
       },
 
       sd: {
-        title: "منهنجي زندگي، منهنجي مرضي ❤️",
+
+        title:
+          "منهنجي زندگي، منهنجي مرضي ❤️",
+
         text: `
           <h2>منهنجي زندگي، منهنجي مرضي</h2>
+
           <p>
             هي محبت جي هڪ اهڙي ڪهاڻي آهي، جنهن نفرت،
             غلط فهمين ۽ مشڪلاتن کي شڪست ڏني.
@@ -694,7 +1056,9 @@
           </p>
         `
       }
+
     };
+
 
     const languageSelect =
       document.getElementById("languageSelect");
@@ -705,100 +1069,808 @@
     const storyContent =
       document.getElementById("storyContent");
 
-    function showStory(language) {
-      const story = stories[language] || stories.ur;
 
-      storyTitle.textContent = story.title;
-      storyContent.innerHTML = story.text;
+    function showStory(language) {
+
+      const story =
+        stories[language] || stories.ur;
+
+      storyTitle.textContent =
+        story.title;
+
+      storyContent.innerHTML =
+        story.text;
     }
 
-    languageSelect.addEventListener("change", function() {
-      showStory(this.value);
-    });
+
+    languageSelect.addEventListener(
+      "change",
+      function () {
+
+        showStory(this.value);
+
+      }
+    );
+
 
     showStory("ur");
+
+
+    /* =====================================================
+       LANGUAGE BUTTON
+    ===================================================== */
 
     const langButton =
       document.getElementById("lang");
 
     let urduMode = false;
 
-    langButton.addEventListener("click", function() {
-      urduMode = !urduMode;
 
-      document.querySelectorAll(".english").forEach(function(element) {
-        element.classList.toggle("hidden", urduMode);
-      });
+    langButton.addEventListener(
+      "click",
+      function () {
 
-      document.querySelectorAll(".urdu").forEach(function(element) {
-        element.classList.toggle("hidden", !urduMode);
-      });
+        urduMode = !urduMode;
 
-      langButton.textContent = urduMode ? "English" : "اردو";
-    });
+        document
+          .querySelectorAll(".english")
+          .forEach(function(element) {
 
-    function showUpload() {
+            element.classList.toggle(
+              "hidden",
+              urduMode
+            );
+
+          });
+
+
+        document
+          .querySelectorAll(".urdu")
+          .forEach(function(element) {
+
+            element.classList.toggle(
+              "hidden",
+              !urduMode
+            );
+
+          });
+
+
+        langButton.textContent =
+          urduMode ? "English" : "اردو";
+
+      }
+    );
+
+
+    /* =====================================================
+       UPLOAD PREVIEW
+    ===================================================== */
+
+    const mediaUpload =
+      document.getElementById("mediaUpload");
+
+    mediaUpload.addEventListener(
+      "change",
+      function() {
+
+        const files = this.files;
+
+        const preview =
+          document.getElementById("uploadPreview");
+
+        preview.innerHTML = "";
+
+        Array.from(files).forEach(
+          function(file) {
+
+            const fileURL =
+              URL.createObjectURL(file);
+
+
+            if (
+              file.type.startsWith("image/")
+            ) {
+
+              const image =
+                document.createElement("img");
+
+              image.src =
+                fileURL;
+
+              image.alt =
+                "Selected image";
+
+              preview.appendChild(image);
+
+            }
+
+
+            if (
+              file.type.startsWith("video/")
+            ) {
+
+              const video =
+                document.createElement("video");
+
+              video.src =
+                fileURL;
+
+              video.controls =
+                true;
+
+              preview.appendChild(video);
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       STATUS MESSAGE
+    ===================================================== */
+
+    function showStatus(
+      message,
+      type
+    ) {
+
+      const status =
+        document.getElementById(
+          "uploadStatus"
+        );
+
+      status.textContent =
+        message;
+
+      status.className =
+        "status " + type;
+
+    }
+
+
+    /* =====================================================
+       UPLOAD TO SUPABASE
+    ===================================================== */
+
+    document
+      .getElementById("uploadButton")
+      .addEventListener(
+        "click",
+        uploadFiles
+      );
+
+
+    async function uploadFiles() {
+
       const files =
-        document.getElementById("mediaUpload").files;
+        document.getElementById(
+          "mediaUpload"
+        ).files;
+
 
       const title =
-        document.getElementById("uploadTitle").value;
+        document.getElementById(
+          "uploadTitle"
+        ).value.trim();
+
 
       const description =
-        document.getElementById("uploadDescription").value;
+        document.getElementById(
+          "uploadDescription"
+        ).value.trim();
 
-      const preview =
-        document.getElementById("uploadPreview");
 
-      preview.innerHTML = "";
+      if (!files.length) {
 
-      if (files.length === 0) {
-        preview.innerHTML =
-          "<p>Please select an image or video.</p>";
+        showStatus(
+          "Please select an image or video first.",
+          "error"
+        );
+
         return;
       }
 
-      if (title.trim() !== "") {
-        const titleElement =
-          document.createElement("h3");
 
-        titleElement.textContent = title;
-        preview.appendChild(titleElement);
+      if (!title) {
+
+        showStatus(
+          "Please enter a title.",
+          "error"
+        );
+
+        return;
       }
 
-      if (description.trim() !== "") {
-        const descriptionElement =
-          document.createElement("p");
 
-        descriptionElement.textContent = description;
-        preview.appendChild(descriptionElement);
+      const uploadButton =
+        document.getElementById(
+          "uploadButton"
+        );
+
+
+      uploadButton.disabled =
+        true;
+
+      uploadButton.innerHTML =
+        '<i class="fa-solid fa-spinner fa-spin"></i> Uploading...';
+
+
+      try {
+
+        for (
+          const file of Array.from(files)
+        ) {
+
+          const cleanName =
+            file.name
+              .replace(
+                /[^a-zA-Z0-9._-]/g,
+                "-"
+              );
+
+
+          const uniqueName =
+            Date.now() +
+            "-" +
+            crypto.randomUUID() +
+            "-" +
+            cleanName;
+
+
+          const filePath =
+            uniqueName;
+
+
+          /* Upload file */
+
+          const {
+            error: uploadError
+          } =
+            await supabaseClient
+              .storage
+              .from("media")
+              .upload(
+                filePath,
+                file,
+                {
+                  cacheControl:
+                    "3600",
+
+                  upsert:
+                    false,
+
+                  contentType:
+                    file.type
+                }
+              );
+
+
+          if (uploadError) {
+
+            throw uploadError;
+
+          }
+
+
+          /* Get public URL */
+
+          const {
+            data: publicData
+          } =
+            supabaseClient
+              .storage
+              .from("media")
+              .getPublicUrl(
+                filePath
+              );
+
+
+          const publicURL =
+            publicData.publicUrl;
+
+
+          /* Save information in database */
+
+          const {
+            error: databaseError
+          } =
+            await supabaseClient
+              .from("media_posts")
+              .insert({
+
+                title:
+                  title,
+
+                description:
+                  description,
+
+                file_url:
+                  publicURL,
+
+                file_name:
+                  file.name,
+
+                file_type:
+                  file.type
+
+              });
+
+
+          if (databaseError) {
+
+            throw databaseError;
+
+          }
+
+        }
+
+
+        showStatus(
+          "✅ Upload successful! Your content is now public on KahaniHub.",
+          "success"
+        );
+
+
+        document
+          .getElementById(
+            "mediaUpload"
+          )
+          .value = "";
+
+
+        document
+          .getElementById(
+            "uploadTitle"
+          )
+          .value = "";
+
+
+        document
+          .getElementById(
+            "uploadDescription"
+          )
+          .value = "";
+
+
+        document
+          .getElementById(
+            "uploadPreview"
+          )
+          .innerHTML = "";
+
+
+        /* Reload gallery */
+
+        loadPublicContent();
+
+
+      } catch (error) {
+
+        console.error(
+          "Upload error:",
+          error
+        );
+
+
+        showStatus(
+          "❌ Upload failed: " +
+          (error.message ||
+            "Unknown error"),
+          "error"
+        );
+
       }
 
-      Array.from(files).forEach(function(file) {
-        const fileURL =
-          URL.createObjectURL(file);
 
-        if (file.type.startsWith("image/")) {
-          const image =
-            document.createElement("img");
+      uploadButton.disabled =
+        false;
 
-          image.src = fileURL;
-          image.alt = "Uploaded image";
+      uploadButton.innerHTML =
+        '<i class="fa-solid fa-cloud-arrow-up"></i> Upload Permanently';
 
-          preview.appendChild(image);
-        }
-
-        if (file.type.startsWith("video/")) {
-          const video =
-            document.createElement("video");
-
-          video.src = fileURL;
-          video.controls = true;
-
-          preview.appendChild(video);
-        }
-      });
     }
+
+
+    /* =====================================================
+       LOAD PUBLIC CONTENT
+    ===================================================== */
+
+    async function loadPublicContent() {
+
+      const gallery =
+        document.getElementById(
+          "publicGallery"
+        );
+
+
+      gallery.innerHTML =
+        '<div class="loading">Loading content...</div>';
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("media_posts")
+          .select("*")
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          );
+
+
+      if (error) {
+
+        console.error(
+          error
+        );
+
+        gallery.innerHTML =
+          `
+          <div class="card">
+            <h3>Unable to load content</h3>
+            <p>
+              Please check your Supabase configuration.
+            </p>
+          </div>
+          `;
+
+        return;
+      }
+
+
+      if (!data || data.length === 0) {
+
+        gallery.innerHTML =
+          `
+          <div class="card">
+            <h3>No content uploaded yet</h3>
+            <p>
+              Be the first person to upload content to KahaniHub.
+            </p>
+          </div>
+          `;
+
+        return;
+      }
+
+
+      gallery.innerHTML = "";
+
+
+      data.forEach(
+        function(item) {
+
+          const card =
+            document.createElement(
+              "div"
+            );
+
+          card.className =
+            "media-card";
+
+
+          let mediaHTML = "";
+
+
+          if (
+            item.file_type &&
+            item.file_type.startsWith(
+              "image/"
+            )
+          ) {
+
+            mediaHTML =
+              `
+              <img
+                src="${escapeHTML(item.file_url)}"
+                alt="${escapeHTML(item.title || "KahaniHub image")}"
+                loading="lazy"
+              >
+              `;
+
+          } else if (
+            item.file_type &&
+            item.file_type.startsWith(
+              "video/"
+            )
+          ) {
+
+            mediaHTML =
+              `
+              <video
+                src="${escapeHTML(item.file_url)}"
+                controls
+                preload="metadata"
+              ></video>
+              `;
+
+          } else {
+
+            mediaHTML =
+              `
+              <div style="padding:30px;text-align:center;">
+                📁
+              </div>
+              `;
+
+          }
+
+
+          const encodedURL =
+            encodeURIComponent(
+              item.file_url
+            );
+
+
+          const encodedTitle =
+            encodeURIComponent(
+              item.title || "KahaniHub Content"
+            );
+
+
+          const whatsappURL =
+            "https://wa.me/?text=" +
+            encodeURIComponent(
+              (item.title || "KahaniHub Content") +
+              "\n\n" +
+              item.file_url
+            );
+
+
+          const facebookURL =
+            "https://www.facebook.com/sharer/sharer.php?u=" +
+            encodedURL;
+
+
+          card.innerHTML =
+            `
+            ${mediaHTML}
+
+            <div class="media-info">
+
+              <h3>
+                ${escapeHTML(
+                  item.title ||
+                  "Untitled"
+                )}
+              </h3>
+
+              <p>
+                ${escapeHTML(
+                  item.description ||
+                  ""
+                )}
+              </p>
+
+              <div class="share-buttons">
+
+                <a
+                  class="whatsapp-btn"
+                  href="${whatsappURL}"
+                  target="_blank"
+                  rel="noopener"
+                  title="Share on WhatsApp"
+                >
+                  <i class="fa-brands fa-whatsapp"></i>
+                  WhatsApp
+                </a>
+
+
+                <a
+                  class="facebook-btn"
+                  href="${facebookURL}"
+                  target="_blank"
+                  rel="noopener"
+                  title="Share on Facebook"
+                >
+                  <i class="fa-brands fa-facebook"></i>
+                  Facebook
+                </a>
+
+
+                <button
+                  class="native-share-btn"
+                  onclick="shareContent(
+                    '${escapeJS(item.title || "KahaniHub Content")}',
+                    '${escapeJS(item.file_url)}'
+                  )"
+                >
+                  <i class="fa-solid fa-share-nodes"></i>
+                  Share
+                </button>
+
+
+                <button
+                  class="copy-btn"
+                  onclick="copyLink(
+                    '${escapeJS(item.file_url)}'
+                  )"
+                >
+                  <i class="fa-solid fa-copy"></i>
+                  Copy Link
+                </button>
+
+              </div>
+
+            </div>
+            `;
+
+
+          gallery.appendChild(
+            card
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =====================================================
+       SECURITY HELPERS
+    ===================================================== */
+
+    function escapeHTML(value) {
+
+      return String(value)
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+
+    function escapeJS(value) {
+
+      return String(value)
+        .replace(
+          /\\/g,
+          "\\\\"
+        )
+        .replace(
+          /'/g,
+          "\\'"
+        )
+        .replace(
+          /\n/g,
+          "\\n"
+        )
+        .replace(
+          /\r/g,
+          "\\r"
+        );
+
+    }
+
+
+    /* =====================================================
+       SHARE CONTENT
+    ===================================================== */
+
+    async function shareContent(
+      title,
+      url
+    ) {
+
+      if (
+        navigator.share
+      ) {
+
+        try {
+
+          await navigator.share({
+
+            title:
+              title,
+
+            text:
+              "Check this content on KahaniHub",
+
+            url:
+              url
+
+          });
+
+        } catch (error) {
+
+          console.log(
+            "Share cancelled"
+          );
+
+        }
+
+      } else {
+
+        copyLink(url);
+
+        alert(
+          "Sharing is not supported on this browser. Link copied instead."
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       COPY LINK
+    ===================================================== */
+
+    async function copyLink(
+      url
+    ) {
+
+      try {
+
+        await navigator.clipboard.writeText(
+          url
+        );
+
+        alert(
+          "✅ Link copied successfully!"
+        );
+
+      } catch (error) {
+
+        prompt(
+          "Copy this link:",
+          url
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       FACEBOOK TEMPORARY BUTTON
+    ===================================================== */
+
+    function openFacebookPage(
+      event
+    ) {
+
+      event.preventDefault();
+
+      alert(
+        "Facebook page link ابھی add نہیں کیا گیا۔ آپ بعد میں اپنا Facebook page URL یہاں لگا سکتے ہیں۔"
+      );
+
+    }
+
+
+    /* =====================================================
+       START WEBSITE
+    ===================================================== */
+
+    loadPublicContent();
+
   </script>
 
 </body>
