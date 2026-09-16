@@ -1237,11 +1237,10 @@
     ===================================================== */
 
     document
-      .getElementById("uploadButton")
-      .addEventListener(
-        "click",
-        uploadFiles
-      );
+  .getElementById("uploadButton")
+  .addEventListener("click", function () {
+    uploadFiles();
+  });
 
 
     async function uploadFiles() {
