@@ -1333,7 +1333,7 @@
           } =
             await supabaseClient
               .storage
-              .from("media")
+              .from("kahanihub-media")
               .upload(
                 filePath,
                 file,
@@ -1364,7 +1364,7 @@
           } =
             supabaseClient
               .storage
-              .from("media")
+              .from("kahanihub-media")
               .getPublicUrl(
                 filePath
               );
