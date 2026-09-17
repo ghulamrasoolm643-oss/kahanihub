@@ -2010,63 +2010,823 @@
         );
 
       }
+<!doctype html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>KahaniHub - Stories, Poetry & Creativity</title>
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
     }
 
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #222;
+      line-height: 1.6;
+    }
 
-    /* =====================================================
-       COPY LINK
-    ===================================================== */
+    header {
+      background: #172554;
+      color: white;
+      padding: 18px 6%;
+    }
 
-    async function copyLink(
-      url
-    ) {
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
 
-      try {
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+    }
 
-        await navigator.clipboard.writeText(
-          url
-        );
+    .logo span {
+      color: #facc15;
+    }
 
-        alert(
-          "✅ Link copied successfully!"
-        );
+    nav {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-      } catch (error) {
+    nav a,
+    nav button {
+      color: white;
+      background: none;
+      border: 0;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 15px;
+    }
 
-        prompt(
-          "Copy this link:",
-          url
-        );
+    nav a:hover {
+      color: #facc15;
+    }
 
+    section,
+    .hero {
+      padding: 45px 6%;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #dbeafe, #fef3c7);
+    }
+
+    .hero-inner {
+      max-width: 1150px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 25px;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 42px;
+    }
+
+    .hero-card,
+    .card,
+    .upload-box,
+    .story-section {
+      background: white;
+      border-radius: 14px;
+      padding: 25px;
+      box-shadow: 0 5px 20px #0001;
+    }
+
+    .hero-card {
+      text-align: center;
+      font-size: 42px;
+    }
+
+    .hero-card p {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .grid {
+      max-width: 1150px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .btn,
+    button {
+      display: inline-block;
+      background: #2563eb;
+      color: white;
+      border: 0;
+      padding: 11px 17px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn:hover,
+    button:hover {
+      opacity: 0.9;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .outline {
+      background: white;
+      color: #2563eb;
+      border: 1px solid #2563eb;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .story-section {
+      max-width: 900px;
+      margin: 30px auto;
+    }
+
+    .story-section h1 {
+      text-align: center;
+      color: #b21f45;
+      font-size: 32px;
+    }
+
+    .story-section h2 {
+      color: #8e244d;
+    }
+
+    .story-section select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .story-content {
+      margin-top: 20px;
+    }
+
+    .story-content p {
+      background: #fff1f5;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .upload-box input,
+    .upload-box textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+    }
+
+    .upload-box textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .preview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .preview img,
+    .preview video {
+      width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #f1f5f9;
+    }
+
+    .market {
+      background: #e0f2fe;
+    }
+
+    .price {
+      color: green;
+      font-weight: bold;
+      font-size: 22px;
+    }
+
+    .product-btn {
+      display: inline-block;
+      background: #16a34a;
+      color: white;
+      padding: 10px 15px;
+      margin-top: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .product-btn:hover {
+      background: #15803d;
+    }
+
+    .about {
+      background: #172554;
+      color: white;
+    }
+
+    .about a {
+      color: #facc15;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .about a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-info {
+      margin-top: 25px;
+      padding: 20px;
+      border-radius: 12px;
+      background: #1e3a8a;
+    }
+
+    .contact-info h3 {
+      margin-top: 0;
+      color: #facc15;
+    }
+
+    .contact-info p {
+      margin: 14px 0;
+    }
+
+    .contact-icon {
+      font-size: 24px;
+      margin-right: 8px;
+    }
+
+    footer {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .upload-box label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #172554;
+    }
+
+    .upload-box input[type="file"] {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0 18px;
+      background: #f8fafc;
+      border: 2px dashed #2563eb;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    #publicGallery {
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .media-card {
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px #0001;
+    }
+
+    .media-card img,
+    .media-card video {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+      background: #e5e7eb;
+    }
+
+    .media-info {
+      padding: 18px;
+    }
+
+    .media-info h3 {
+      margin-top: 0;
+      color: #172554;
+    }
+
+    .media-info p {
+      color: #555;
+      white-space: pre-wrap;
+    }
+
+    .share-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .share-buttons a,
+    .share-buttons button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      color: white;
+      text-decoration: none;
+      border: 0;
+      font-size: 14px;
+    }
+
+    .whatsapp-btn {
+      background: #25D366 !important;
+    }
+
+    .facebook-btn {
+      background: #1877F2 !important;
+    }
+
+    .native-share-btn {
+      background: #2563eb !important;
+    }
+
+    .copy-btn {
+      background: #475569 !important;
+    }
+
+    .status {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      display: none;
+      font-weight: bold;
+    }
+
+    .status.success {
+      display: block;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status.error {
+      display: block;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 25px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 700px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
       }
 
+      h1 {
+        font-size: 32px;
+      }
+
+      nav {
+        justify-content: center;
+      }
     }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="nav">
+
+      <div class="logo">
+        Kahani<span>Hub</span>
+      </div>
+
+      <nav>
+        <a href="#categories">Categories</a>
+        <a href="#featured">Featured</a>
+        <a href="#story">Story</a>
+        <a href="#news">News</a>
+        <a href="#upload">Upload</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#marketplace">Marketplace</a>
+        <a href="#latest-products">Latest Products</a>
+        <a href="#about">About</a>
+        <button id="lang" type="button">اردو</button>
+      </nav>
+
+    </div>
+  </header>
 
 
-    /* =====================================================
-       FACEBOOK TEMPORARY BUTTON
-    ===================================================== */
+  <div class="hero">
+    <div class="hero-inner">
 
-    function openFacebookPage(
-      event
-    ) {
+      <div>
+        <p class="english">
+          STORIES • CREATIVITY • DIGITAL CONTENT
+        </p>
 
-      event.preventDefault();
+        <h1 class="english">
+          Your world of stories, poetry and imagination.
+        </h1>
 
-      alert(
-        "Facebook page link ابھی add نہیں کیا گیا۔ آپ بعد میں اپنا Facebook page URL یہاں لگا سکتے ہیں۔"
-      );
+        <h1 class="urdu hidden">
+          کہانیوں، شاعری اور تخلیقی صلاحیتوں کی دنیا
+        </h1>
 
-    }
+        <p class="english">
+          Discover stories, poetry, music and creative digital products
+          in one beautiful place.
+        </p>
+
+        <p class="urdu hidden">
+          کہانیاں، شاعری، گانے اور تخلیقی مواد ایک ہی جگہ دریافت کریں۔
+        </p>
+
+        <div class="actions">
+          <a class="btn" href="#featured">
+            Explore Stories
+          </a>
+
+          <a class="btn outline" href="#upload">
+            Upload Image / Video
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        📚 ✨ 🎵
+        <p>Read. Create. Sell.</p>
+      </div>
+
+    </div>
+  </div>
 
 
-    /* =====================================================
-       START WEBSITE
-    ===================================================== */
+  <section id="categories">
 
-    // loadPublicContent();
-  </script>
+    <h2 class="section-title">
+      Explore Categories
+    </h2>
 
-</body>
-</html>
+    <div class="grid">
+
+      <div class="card">
+        🏛️
+        <h3>History</h3>
+        <p>Historical events and civilizations.</p>
+      </div>
+
+      <div class="card">
+        ✍️
+        <h3>Poetry</h3>
+        <p>Urdu and English poetry.</p>
+      </div>
+
+      <div class="card">
+        🎵
+        <h3>Music & Lyrics</h3>
+        <p>Original songs and ideas.</p>
+      </div>
+
+      <div class="card">
+        📖
+        <h3>Stories</h3>
+        <p>Moral and imaginative stories.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section id="featured">
+
+    <h2 class="section-title">
+      Featured Content
+    </h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <b>Story</b>
+
+        <h3>
+          میری زندگی، میری مرضی ❤️
+        </h3>
+
+        <p>
+          ایک محبت جو نفرت کو ہرا گئی۔
+        </p>
+
+        <a class="btn" href="#story">
+          Read More
+        </a>
+      </div>
+
+      <div class="card">
+
+        <b>Poetry</b>
+
+        <h3>
+          Dil Ki Baarish
+        </h3>
+
+        <p>
+          Romantic poetry filled with emotions.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section id="story" class="story-section" dir="rtl">
+
+    <h1 id="storyTitle">
+      میری زندگی، میری مرضی ❤️
+    </h1>
+
+    <label for="languageSelect">
+      زبان منتخب کریں:
+    </label>
+
+    <select id="languageSelect">
+
+      <option value="ur">
+        اردو
+      </option>
+
+      <option value="en">
+        English
+      </option>
+
+      <option value="hi">
+        हिन्दी
+      </option>
+
+      <option value="sd">
+        سنڌي
+      </option>
+
+    </select>
+
+    <div id="storyContent" class="story-content"></div>
+
+  </section>
+
+
+  <section id="news" class="market">
+
+    <h2 class="section-title">
+      Latest News
+    </h2>
+
+    <div class="grid">
+
+      <div class="card">
+
+        📰
+
+        <h3>
+          Technology News
+        </h3>
+
+        <p>
+          Latest technology, AI and digital world news.
+        </p>
+
+        <a class="btn" href="#latest-products">
+          Read News
+        </a>
+
+      </div>
+
+      <div class="card">
+
+        🌍
+
+        <h3>
+          World News
+        </h3>
+
+        <p>
+          Important international news and updates.
+        </p>
+
+        <a class="btn" href="#news">
+          View Updates
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section id="upload">
+
+    <h2 class="section-title">
+      Upload Image or Video
+    </h2>
+
+    <p class="section-title">
+      Upload your image or video and save it permanently on KahaniHub.
+    </p>
+
+    <div class="upload-box">
+
+      <label for="mediaUpload">
+        Select Image or Video
+      </label>
+
+      <input
+        id="mediaUpload"
+        type="file"
+        accept="image/*,video/*"
+        multiple
+      >
+
+      <input
+        id="uploadTitle"
+        type="text"
+        placeholder="Title"
+      >
+
+      <textarea
+        id="uploadDescription"
+        placeholder="Description"
+      ></textarea>
+
+      <button id="uploadButton" type="button">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        Upload Permanently
+      </button>
+
+      <div id="uploadStatus" class="status"></div>
+
+      <div id="uploadPreview" class="preview"></div>
+
+    </div>
+
+  </section>
+
+
+  <section id="gallery">
+
+    <h2 class="section-title">
+      Latest Public Content
+    </h2>
+
+    <div id="publicGallery" class="grid">
+
+      <div class="loading">
+        Loading content...
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section id="marketplace" class="market">
+
+    <h2 class="section-title">
+      Digital Marketplace
+    </h2>
+
+    <div class="grid">
+
+      <div class="card">
+
+        🖼️
+
+        <h3>
+          AI Image Pack
+        </h3>
+
+        <p class="price">
+          💵 $3.00
+        </p>
+
+        <a class="product-btn" href="#about">
+          Get Now
+        </a>
+
+      </div>
+
+      <div class="card">
+
+        🎬
+
+        <h3>
+          AI Video Pack
+        </h3>
+
+        <p class="price">
+          💵 $5.00
+        </p>
+
+        <a class="product-btn" href="#about">
+          Get Now
+        </a>
+
+      </div>
+
+      <div class="card">
+
+        🎧
+
+        <h3>
+          AI Song Collection
+        </h3>
+
+        <p class="price">
+          💵 $4.00
+        </p>
+
+        <a class="product-btn" href="#about">
+          Get Now
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section id="latest-products">
+
+    <h2 class="section-title">
+      Latest Products
+    </h2>
+
+    <div class="grid">
+
+      <div class="card">
+
+        <h3>
+          Romantic Story Pack
+        </h3>
+
+        <p>
+          Beautiful romantic stories and poetry.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>
+          AI
