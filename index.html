@@ -259,18 +259,30 @@ finally{button.disabled=false;button.innerHTML='<i class="fa-solid fa-cloud-arro
 /* Gallery */
 async function loadPublicContent(){
 const gallery=document.getElementById("publicGallery");
+const requestedPost=new URLSearchParams(window.location.search).get("post");
+
+/* If this is a shared post URL, turn the page into a focused post view
+   instead of showing the normal homepage/admin-like content first. */
+if(requestedPost){
+  document.body.classList.add("shared-post");
+  const gallerySection=document.getElementById("gallery");
+  const hero=document.querySelector(".hero");
+  if(gallerySection && hero) hero.parentNode.insertBefore(gallerySection,hero);
+  const heading=gallerySection ? gallerySection.querySelector(".section-title") : null;
+  if(heading) heading.textContent="KahaniHub Shared Post";
+}
+
 gallery.innerHTML='<div class="loading">Loading content...</div>';
 try{
 const {data,error}=await supabaseClient.from("media_posts").select("*").order("created_at",{ascending:false});
 if(error) throw error;
-const requestedPost=new URLSearchParams(window.location.search).get("post");
 let contentData=data||[];
 if(requestedPost){
 contentData=contentData.filter(item=>String(item.id)===String(requestedPost));
 if(!contentData.length){gallery.innerHTML='<div class="card"><h3>Post not found</h3><p>This KahaniHub post may have been deleted or its link is incorrect.</p><p><a href="./" style="font-weight:700">Open KahaniHub home</a></p></div>';return;}
 }
 if(!contentData.length){gallery.innerHTML='<div class="card"><h3>No content uploaded yet</h3><p>Be the first person to upload content to KahaniHub.</p></div>';return;}
-gallery.innerHTML=requestedPost ? '<div class="card" style="margin-bottom:15px"><strong>📌 KahaniHub shared post</strong><p style="margin:6px 0 0">You are viewing this content directly from a KahaniHub link.</p></div>' : "";
+gallery.innerHTML=requestedPost ? '<div class="card shared-notice" style="margin-bottom:15px"><strong>📌 KahaniHub Shared Post</strong><p style="margin:6px 0 0">This is the exact post shared from KahaniHub.</p></div>' : "";
 contentData.forEach(item=>{
 const card=document.createElement("div");card.className="media-card";
 let mediaHTML="";
