@@ -263,15 +263,21 @@ gallery.innerHTML='<div class="loading">Loading content...</div>';
 try{
 const {data,error}=await supabaseClient.from("media_posts").select("*").order("created_at",{ascending:false});
 if(error) throw error;
-if(!data||!data.length){gallery.innerHTML='<div class="card"><h3>No content uploaded yet</h3><p>Be the first person to upload content to KahaniHub.</p></div>';return;}
-gallery.innerHTML="";
-data.forEach(item=>{
+const requestedPost=new URLSearchParams(window.location.search).get("post");
+let contentData=data||[];
+if(requestedPost){
+contentData=contentData.filter(item=>String(item.id)===String(requestedPost));
+if(!contentData.length){gallery.innerHTML='<div class="card"><h3>Post not found</h3><p>This KahaniHub post may have been deleted or its link is incorrect.</p><p><a href="./" style="font-weight:700">Open KahaniHub home</a></p></div>';return;}
+}
+if(!contentData.length){gallery.innerHTML='<div class="card"><h3>No content uploaded yet</h3><p>Be the first person to upload content to KahaniHub.</p></div>';return;}
+gallery.innerHTML=requestedPost ? '<div class="card" style="margin-bottom:15px"><strong>📌 KahaniHub shared post</strong><p style="margin:6px 0 0">You are viewing this content directly from a KahaniHub link.</p></div>' : "";
+contentData.forEach(item=>{
 const card=document.createElement("div");card.className="media-card";
 let mediaHTML="";
 if(item.file_type&&item.file_type.startsWith("image/")) mediaHTML=`<img src="${escapeHTML(item.file_url)}" alt="${escapeHTML(item.title||"KahaniHub image")}" loading="lazy">`;
 else if(item.file_type&&item.file_type.startsWith("video/")) mediaHTML=`<video src="${escapeHTML(item.file_url)}" controls preload="metadata"></video>`;
 else mediaHTML='<div style="padding:30px;text-align:center">📁</div>';
-const url=String(item.file_url||"");
+const url=getPostUrl(item);
 const title=String(item.title||"KahaniHub Content");
 const whatsapp="https://wa.me/?text="+encodeURIComponent(title+"\n\n"+url);
 const facebook="https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(url);
@@ -290,7 +296,15 @@ gallery.appendChild(card);
 
 /* Safe helpers */
 function escapeHTML(value){return String(value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");}
-async function copyLink(url){try{await navigator.clipboard.writeText(url);alert("Link copied successfully.");}catch(e){prompt("Copy this link:",url);}}
+
+/* Share the KahaniHub page, not the raw Supabase image/video URL. */
+function getPostUrl(item){
+const id=item&&item.id;
+const base=window.location.origin+window.location.pathname;
+return id ? base+"?post="+encodeURIComponent(String(id)) : base;
+}
+
+async function copyLink(url){try{await navigator.clipboard.writeText(url);alert("KahaniHub website link copied successfully.");}catch(e){prompt("Copy this KahaniHub link:",url);}}
 async function shareContent(title,url){
 if(navigator.share){try{await navigator.share({title,text:"Check this content on KahaniHub",url});return;}catch(e){console.log("Share cancelled");}}
 await copyLink(url);
