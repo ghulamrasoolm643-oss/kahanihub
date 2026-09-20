@@ -57,6 +57,8 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
 .status.success{display:block;background:#dcfce7;color:#166534}.status.error{display:block;background:#fee2e2;color:#991b1b}
 .loading{text-align:center;padding:25px;font-weight:bold}
 @media(max-width:700px){.hero-inner{grid-template-columns:1fr}h1{font-size:32px}nav{justify-content:center}}
+
+.dashboard-section,.policy-section{max-width:1150px;margin:30px auto;padding:20px}.dashboard-card,.policy-card{background:#fff;border-radius:18px;padding:24px;box-shadow:0 8px 30px rgba(0,0,0,.08)}.dashboard-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.dashboard-grid input,.dashboard-grid button,.viewer-language select{padding:12px;border-radius:10px;border:1px solid #cbd5e1}.dashboard-grid button{cursor:pointer;font-weight:700}.feed-item img{max-width:180px;border-radius:12px;margin-bottom:8px}.muted{color:#64748b}.translation-note{margin:8px 0;padding:10px;border-radius:10px;background:#f1f5f9;color:#475569}.viewer-language{display:flex;align-items:center;gap:10px;margin:12px 0;flex-wrap:wrap}.policy-card p{line-height:1.7}@media(max-width:700px){.dashboard-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -73,7 +75,7 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
 <a href="#gallery">Gallery</a>
 <a href="#marketplace">Marketplace</a>
 <a href="#latest-products">Latest Products</a>
-<a href="#about">About</a>
+<a href="#dashboard">Dashboard</a><a href="#privacy">Privacy</a><a href="#terms">Terms</a><a href="#about">About</a>
 <button id="lang" type="button">اردو</button>
 </nav>
 </div>
@@ -139,7 +141,7 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
 <div id="uploadCategory" class="upload-category">📌 Upload Category: General</div>
 <input id="mediaUpload" type="file" accept="image/*,video/*" multiple>
 <input id="uploadTitle" type="text" placeholder="Title">
-<textarea id="uploadDescription" placeholder="Description"></textarea>
+<textarea id="uploadDescription" placeholder="Description (maximum 5,000 characters)" maxlength="5000"></textarea>
 <button id="uploadButton" type="button"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Permanently</button>
 <div id="uploadStatus" class="status"></div>
 <div id="uploadPreview" class="preview"></div>
@@ -182,6 +184,49 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
 </div>
 </section>
 
+<section id="dashboard" class="dashboard-section">
+<h2 class="section-title">Admin Dashboard</h2>
+<div class="dashboard-card">
+<p><strong>Admin login</strong></p>
+<p class="muted">The dashboard uses Supabase Authentication. Create your admin user in Supabase Authentication first, then sign in here.</p>
+<div class="dashboard-grid">
+<input id="adminEmail" type="email" placeholder="Admin email">
+<input id="adminPassword" type="password" placeholder="Password">
+<button id="adminLoginBtn" type="button">🔐 Login</button>
+<button id="adminLogoutBtn" type="button" hidden>Logout</button>
+</div>
+<div id="adminStatus" class="status"></div>
+<div id="adminPanel" hidden>
+<h3>Manage uploaded posts</h3>
+<div id="adminPosts" class="feed-list"><div class="loading">Login to load posts.</div></div>
+</div>
+</div>
+</section>
+
+<section id="privacy" class="policy-section">
+<h2 class="section-title">Privacy Policy</h2>
+<div class="policy-card">
+<p>KahaniHub respects your privacy. We may collect information that you voluntarily provide, such as content you upload and contact information you submit through the website.</p>
+<p>Uploaded media and descriptions may be stored using our hosting and database services. KahaniHub may use third-party services, including Google AdSense, analytics or storage providers, which may use cookies, IP addresses or similar technologies as described by their own policies.</p>
+<p>When advertising is enabled, Google and its partners may use advertising cookies to serve ads based on visits to this or other websites. Users can manage personalized advertising through Google Ads Settings.</p>
+<p>Do not upload private, confidential, copyrighted or unlawful material unless you have the necessary rights or permission.</p>
+<p>For privacy questions or requests, contact: <a href="mailto:ghulamrasoolm643@gmail.com">ghulamrasoolm643@gmail.com</a>.</p>
+<p class="muted">This policy is general website information and should be reviewed and updated for the laws and services that apply to KahaniHub.</p>
+</div>
+</section>
+
+<section id="terms" class="policy-section">
+<h2 class="section-title">Terms & Conditions</h2>
+<div class="policy-card">
+<p>By using KahaniHub, you agree to use the website lawfully and respectfully.</p>
+<p>You are responsible for the content you upload, including images, videos, stories, descriptions and other material. You must have the necessary rights or permission to publish it.</p>
+<p>You must not upload unlawful, fraudulent, harmful, abusive, hateful, misleading or infringing material, or attempt to interfere with the website, its storage, database or security.</p>
+<p>KahaniHub may remove content that violates these terms or applicable policies. Availability of uploaded content is not guaranteed.</p>
+<p>Marketplace products, links and third-party services may have their own terms. Users should review those terms before purchasing or using them.</p>
+<p>For questions about these Terms, contact: <a href="mailto:ghulamrasoolm643@gmail.com">ghulamrasoolm643@gmail.com</a>.</p>
+</div>
+</section>
+
 <section id="about" class="about">
 <h2>About KahaniHub</h2>
 <p>Welcome to KahaniHub — your creative world of stories, poetry, AI images, AI videos, AI songs and digital content.</p>
@@ -204,6 +249,57 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
 const SUPABASE_URL = "https://seewwheiyuckrcnpehec.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_Fo1IWEvEJxSf06nwYpdlZQ_oH0E9Eu_";
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+/* Upload language + 500 character counter */
+const uploadDescriptionEl=document.getElementById("uploadDescription");
+const charCountEl=document.getElementById("charCount");
+if(uploadDescriptionEl){uploadDescriptionEl.addEventListener("input",()=>{charCountEl.textContent=uploadDescriptionEl.value.length+" / 5,000";});}
+
+/* Viewer translation using Google Translate's public page translation UI.
+   This does not require storing translated copies. A real translation API can be added later for server-side translations. */
+function applyViewerLanguage(lang){
+  const select=document.getElementById("viewerLanguage");
+  if(!select) return;
+  const langMap={en:"en",ur:"ur",hi:"hi",sd:"sd",ar:"ar",fa:"fa",tr:"tr",fr:"fr",de:"de",es:"es",pt:"pt",id:"id",bn:"bn",pa:"pa","zh-CN":"zh-CN",ja:"ja",ko:"ko",ru:"ru"};
+  const target=langMap[lang]||"en";
+  const page=window.location.href;
+  if(target==="en"){window.location.href=page.split("#")[0];return;}
+  window.location.href="https://translate.google.com/translate?sl=auto&tl="+encodeURIComponent(target)+"&u="+encodeURIComponent(page);
+}
+const viewerLanguage=document.getElementById("viewerLanguage");
+if(viewerLanguage) viewerLanguage.addEventListener("change",()=>applyViewerLanguage(viewerLanguage.value));
+
+/* Supabase Auth admin dashboard */
+async function adminLogin(){
+ const email=document.getElementById("adminEmail").value.trim(); const password=document.getElementById("adminPassword").value; const status=document.getElementById("adminStatus");
+ if(!email||!password){status.textContent="Enter admin email and password.";status.className="status error";return;}
+ const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
+ if(error){status.textContent="Login failed: "+error.message;status.className="status error";return;}
+ status.textContent="✅ Logged in.";status.className="status success"; updateAdminUI(data.user);
+}
+async function adminLogout(){await supabaseClient.auth.signOut();updateAdminUI(null);}
+async function updateAdminUI(user){
+ const panel=document.getElementById("adminPanel"), logout=document.getElementById("adminLogoutBtn");
+ if(user){panel.hidden=false;logout.hidden=false;await loadAdminPosts();} else {panel.hidden=true;logout.hidden=true;document.getElementById("adminPosts").innerHTML="<div class='loading'>Login to load posts.</div>";}
+}
+async function loadAdminPosts(){
+ const box=document.getElementById("adminPosts");
+ const {data,error}=await supabaseClient.from("media_posts").select("id,title,description,category,file_url,created_at").order("created_at",{ascending:false});
+ if(error){box.innerHTML="<div class='feed-item'>Unable to load posts: "+escapeHTML(error.message)+"</div>";return;}
+ box.innerHTML="";
+ (data||[]).forEach(item=>{const row=document.createElement("div");row.className="feed-item";row.innerHTML=`<h4>${escapeHTML(item.title||"Untitled")}</h4><p>${escapeHTML(item.category||"General")}</p><button type="button" data-id="${escapeHTML(item.id)}">🗑️ Delete</button>`;row.querySelector("button").addEventListener("click",()=>deleteAdminPost(item.id));box.appendChild(row);});
+ if(!data?.length) box.innerHTML="<div class='feed-item'>No posts found.</div>";
+}
+async function deleteAdminPost(id){
+ if(!confirm("Delete this post?")) return;
+ const {error}=await supabaseClient.from("media_posts").delete().eq("id",id);
+ if(error){alert("Delete failed: "+error.message);return;}
+ await loadAdminPosts(); await loadPublicContent();
+}
+document.getElementById("adminLoginBtn")?.addEventListener("click",adminLogin);
+document.getElementById("adminLogoutBtn")?.addEventListener("click",adminLogout);
+supabaseClient.auth.getSession().then(({data})=>updateAdminUI(data.session?.user||null));
+
 
 /* Stories */
 const stories = {
@@ -260,7 +356,7 @@ document.getElementById("uploadButton").addEventListener("click",uploadFiles);
 async function uploadFiles(){
 const files=mediaUpload.files;
 const title=document.getElementById("uploadTitle").value.trim();
-const description=document.getElementById("uploadDescription").value.trim();
+const description=document.getElementById("uploadDescription").value.trim().slice(0,5000);
 if(!files.length){showStatus("Please select an image or video first.","error");return;}
 if(!title){showStatus("Please enter a title.","error");return;}
 const button=document.getElementById("uploadButton");
