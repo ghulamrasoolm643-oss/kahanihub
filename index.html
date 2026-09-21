@@ -37,10 +37,11 @@ h1{font-size:42px;line-height:1.15}
 .upload-box textarea{min-height:100px;resize:vertical}.upload-box label{display:block;font-weight:bold;color:#172554}
 .upload-box input[type=file]{background:#f8fafc;border:2px dashed #2563eb;cursor:pointer}
 .preview{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin-top:20px}
-.preview img,.preview video{width:100%;max-height:300px;object-fit:contain;border-radius:10px;background:#f1f5f9}
+.preview img,.preview video,.preview audio{width:100%;max-height:300px;object-fit:contain;border-radius:10px;background:#f1f5f9}
+.category-grid{max-width:1150px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}.category-card{background:#fff;border:1px solid #dbe4f0;border-radius:14px;padding:18px;text-align:center;box-shadow:0 4px 15px #0000000d}.category-card .icon{font-size:32px;display:block;margin-bottom:8px}.category-card button{width:100%;margin-top:8px}.upload-category-select{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;font-weight:700;color:#172554}
 .market{background:#e0f2fe}.price{color:green;font-weight:bold;font-size:22px}
 .product-btn{display:inline-block;background:#16a34a;color:#fff;padding:10px 15px;margin-top:10px;border-radius:8px;text-decoration:none;font-weight:bold}
-.about{background:#172554;color:#fff}.about a{color:#facc15;text-decoration:none;font-weight:bold}
+.category-menu{position:relative;display:inline-block}.category-menu>button{background:transparent;color:#fff;padding:8px 10px;border-radius:8px;font-weight:700}.category-menu>button:hover{background:rgba(255,255,255,.12)}.category-dropdown{position:absolute;top:100%;left:0;min-width:210px;background:#fff;border-radius:10px;box-shadow:0 10px 28px rgba(0,0,0,.18);padding:8px;display:none;z-index:1000}.category-menu:hover .category-dropdown,.category-menu:focus-within .category-dropdown{display:block}.category-dropdown a{display:block!important;color:#172554!important;padding:9px 11px;border-radius:7px;text-decoration:none;font-weight:700;white-space:nowrap}.category-dropdown a:hover{background:#eff6ff}.category-list{font-size:14px;color:#475569;display:grid;gap:8px}.category-list .cat-item{padding:8px;border-radius:8px;background:#f8fafc}.category-list .cat-item a{color:#2563eb;text-decoration:none;font-weight:700}.category-list .cat-empty{color:#64748b;font-size:13px}.about{background:#0b2a55;color:#fff}.about a{color:#facc15;text-decoration:none;font-weight:bold}.about-terms{margin-top:16px;text-align:center;font-size:12px}.about-terms a{color:#dbeafe;text-decoration:underline;font-weight:500}
 .contact-info{margin-top:25px;padding:20px;border-radius:12px;background:#1e3a8a}
 .contact-info h3{margin-top:0;color:#facc15}.contact-icon{font-size:24px;margin-right:8px}
 footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
@@ -67,7 +68,22 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
 <div class="nav">
 <div class="logo">Kahani<span>Hub</span></div>
 <nav>
-<a href="#categories">Categories</a>
+<div class="category-menu">
+<button type="button" aria-haspopup="true">Categories ▾</button>
+<div class="category-dropdown" aria-label="Public categories">
+<a href="#category-Stories">📖 Stories</a>
+<a href="#category-Poetry">✍️ Poetry</a>
+<a href="#category-History">🏛️ History</a>
+<a href="#category-News">📰 News</a>
+<a href="#category-World-News">🌍 World News</a>
+<a href="#category-Music-Lyrics">🎵 Music &amp; Lyrics</a>
+<a href="#category-AI-Images">🤖 AI Images</a>
+<a href="#category-Images-for-Sale">💰 Images for Sale</a>
+<a href="#category-Audio">🎧 Audio</a>
+<a href="#category-Videos">🎬 Videos</a>
+<a href="#category-AI-Videos">🤖🎬 AI Videos</a>
+</div>
+</div>
 <a href="#featured">Featured</a>
 <a href="#story">Story</a>
 <a href="#news">News</a>
@@ -100,11 +116,39 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
 
 <section id="categories">
 <h2 class="section-title">Explore Categories</h2>
+<p class="section-title">Har post apni selected category mein automatically show hogi.</p>
+<div class="category-grid">
+<div class="category-card"><span class="icon">📖</span><h3>Stories</h3><p>Kahaniyan aur emotional stories</p><button type="button" onclick="setContentFilter('Story')">View Stories</button></div>
+<div class="category-card"><span class="icon">✍️</span><h3>Poetry</h3><p>Urdu & English poetry</p><button type="button" onclick="setContentFilter('Poetry')">View Poetry</button></div>
+<div class="category-card"><span class="icon">🏛️</span><h3>History</h3><p>Historical content</p><button type="button" onclick="setContentFilter('History')">View History</button></div>
+<div class="category-card"><span class="icon">📰</span><h3>News</h3><p>Pakistan & local news</p><button type="button" onclick="setContentFilter('News')">View News</button></div>
+<div class="category-card"><span class="icon">🌍</span><h3>World News</h3><p>International news</p><button type="button" onclick="setContentFilter('World News')">View World News</button></div>
+<div class="category-card"><span class="icon">🎵</span><h3>Music & Lyrics</h3><p>Songs and lyrics</p><button type="button" onclick="setContentFilter('Music & Lyrics')">View Music</button></div>
+<div class="category-card"><span class="icon">🤖</span><h3>AI Images</h3><p>AI-generated images</p><button type="button" onclick="setContentFilter('AI Images')">View AI Images</button></div>
+<div class="category-card"><span class="icon">💰</span><h3>Images for Sale</h3><p>Images available for sale</p><button type="button" onclick="setContentFilter('Images for Sale')">View Sale Images</button></div>
+<div class="category-card"><span class="icon">🎧</span><h3>Audio</h3><p>Audio uploads</p><button type="button" onclick="setContentFilter('Audio')">View Audio</button></div>
+<div class="category-card"><span class="icon">🎬</span><h3>Videos</h3><p>Video uploads</p><button type="button" onclick="setContentFilter('Videos')">View Videos</button></div>
+<div class="category-card"><span class="icon">🤖🎬</span><h3>AI Videos</h3><p>AI-generated videos</p><button type="button" onclick="setContentFilter('AI Videos')">View AI Videos</button></div>
+<div class="category-card"><span class="icon">🎼</span><h3>AI Music Prompts</h3><p>Prompts for AI music</p><button type="button" onclick="setContentFilter('AI Music Prompts')">View Prompts</button></div>
+</div>
+</section>
+
+</section>
+
+<section id="category-browser" class="policy-section">
+<h2 class="section-title">Public Categories</h2>
 <div class="grid">
-<div class="card">🏛️<h3>History</h3><p>Historical events and civilizations.</p></div>
-<div class="card">✍️<h3>Poetry</h3><p>Urdu and English poetry.</p></div>
-<div class="card">🎵<h3>Music & Lyrics</h3><p>Original songs and ideas.</p></div>
-<div class="card">📖<h3>Stories</h3><p>Moral and imaginative stories.</p></div>
+<div class="card" id="category-Stories"><h3>📖 Stories</h3><div id="category-list-Stories" class="category-list">Loading...</div></div>
+<div class="card" id="category-Poetry"><h3>✍️ Poetry</h3><div id="category-list-Poetry" class="category-list">Loading...</div></div>
+<div class="card" id="category-History"><h3>🏛️ History</h3><div id="category-list-History" class="category-list">Loading...</div></div>
+<div class="card" id="category-News"><h3>📰 News</h3><div id="category-list-News" class="category-list">Loading...</div></div>
+<div class="card" id="category-World-News"><h3>🌍 World News</h3><div id="category-list-World-News" class="category-list">Loading...</div></div>
+<div class="card" id="category-Music-Lyrics"><h3>🎵 Music &amp; Lyrics</h3><div id="category-list-Music-Lyrics" class="category-list">Loading...</div></div>
+<div class="card" id="category-AI-Images"><h3>🤖 AI Images</h3><div id="category-list-AI-Images" class="category-list">Loading...</div></div>
+<div class="card" id="category-Images-for-Sale"><h3>💰 Images for Sale</h3><div id="category-list-Images-for-Sale" class="category-list">Loading...</div></div>
+<div class="card" id="category-Audio"><h3>🎧 Audio</h3><div id="category-list-Audio" class="category-list">Loading...</div></div>
+<div class="card" id="category-Videos"><h3>🎬 Videos</h3><div id="category-list-Videos" class="category-list">Loading...</div></div>
+<div class="card" id="category-AI-Videos"><h3>🤖🎬 AI Videos</h3><div id="category-list-AI-Videos" class="category-list">Loading...</div></div>
 </div>
 </section>
 
@@ -137,9 +181,25 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
 <h2 class="section-title">Upload Image or Video</h2>
 <p class="section-title">Upload your image or video and save it permanently on KahaniHub.</p>
 <div class="upload-box">
-<label for="mediaUpload">Select Image or Video</label>
-<div id="uploadCategory" class="upload-category">📌 Upload Category: General</div>
-<input id="mediaUpload" type="file" accept="image/*,video/*" multiple>
+<label for="uploadCategorySelect">Select Post Category</label>
+<select id="uploadCategorySelect" class="upload-category-select">
+<option value="Story">📖 Stories</option>
+<option value="Poetry">✍️ Poetry</option>
+<option value="History">🏛️ History</option>
+<option value="News">📰 News</option>
+<option value="World News">🌍 World News</option>
+<option value="Music & Lyrics">🎵 Music & Lyrics</option>
+<option value="AI Music Prompts">🎼 AI Music Prompts</option>
+<option value="AI Images">🤖 AI Images</option>
+<option value="Images for Sale">💰 Images for Sale</option>
+<option value="Audio">🎧 Audio</option>
+<option value="Videos">🎬 Videos</option>
+<option value="AI Videos">🤖🎬 AI Videos</option>
+<option value="General">📌 General</option>
+</select>
+<div id="uploadCategory" class="upload-category">📌 Upload Category: Story</div>
+<label for="mediaUpload">Select Image, Audio or Video</label>
+<input id="mediaUpload" type="file" accept="image/*,audio/*,video/*" multiple>
 <input id="uploadTitle" type="text" placeholder="Title">
 <textarea id="uploadDescription" placeholder="Description (maximum 5,000 characters)" maxlength="5000"></textarea>
 <button id="uploadButton" type="button"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Permanently</button>
@@ -152,8 +212,18 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
 <h2 class="section-title">Latest Public Content</h2>
 <div class="content-filters" role="tablist" aria-label="Content filters">
 <button class="filter-btn active" type="button" data-filter="all">All</button>
+<button class="filter-btn" type="button" data-filter="Story">📖 Stories</button>
+<button class="filter-btn" type="button" data-filter="Poetry">✍️ Poetry</button>
+<button class="filter-btn" type="button" data-filter="History">🏛️ History</button>
 <button class="filter-btn" type="button" data-filter="News">📰 News</button>
 <button class="filter-btn" type="button" data-filter="World News">🌍 World News</button>
+<button class="filter-btn" type="button" data-filter="Music & Lyrics">🎵 Music</button>
+<button class="filter-btn" type="button" data-filter="AI Images">🤖 AI Images</button>
+<button class="filter-btn" type="button" data-filter="Images for Sale">💰 For Sale</button>
+<button class="filter-btn" type="button" data-filter="Audio">🎧 Audio</button>
+<button class="filter-btn" type="button" data-filter="Videos">🎬 Videos</button>
+<button class="filter-btn" type="button" data-filter="AI Videos">🤖🎬 AI Videos</button>
+<button class="filter-btn" type="button" data-filter="AI Music Prompts">🎼 AI Prompts</button>
 </div>
 <div id="publicGallery" class="grid"><div class="loading">Loading content...</div></div>
 </section>
@@ -238,6 +308,7 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
 <p><a href="https://wa.me/923166604532" target="_blank" rel="noopener" style="font-size:20px;color:#fff;background:#25D366;padding:10px 15px;border-radius:10px;display:inline-flex;align-items:center;gap:8px"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></p>
 <p><strong>Location:</strong> Karachi, Pakistan</p>
 </div>
+<div class="about-terms"><a href="#terms">Terms &amp; Conditions</a></div>
 </section>
 
 <footer>© 2026 KahaniHub. All Rights Reserved.</footer>
@@ -248,7 +319,9 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
 /* Supabase */
 const SUPABASE_URL = "https://seewwheiyuckrcnpehec.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_Fo1IWEvEJxSf06nwYpdlZQ_oH0E9Eu_";
-const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY,{
+  auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,storageKey:"kahanihub-auth"}
+});
 
 /* Upload language + 500 character counter */
 const uploadDescriptionEl=document.getElementById("uploadDescription");
@@ -269,26 +342,52 @@ function applyViewerLanguage(lang){
 const viewerLanguage=document.getElementById("viewerLanguage");
 if(viewerLanguage) viewerLanguage.addEventListener("change",()=>applyViewerLanguage(viewerLanguage.value));
 
-/* Supabase Auth admin dashboard */
+/* Supabase Auth owner dashboard */
+const OWNER_EMAIL="ghulamrasoolm643@gmail.com";
+function isOwner(user){return !!user && String(user.email||"").trim().toLowerCase()===OWNER_EMAIL.toLowerCase();}
 async function adminLogin(){
  const email=document.getElementById("adminEmail").value.trim(); const password=document.getElementById("adminPassword").value; const status=document.getElementById("adminStatus");
- if(!email||!password){status.textContent="Enter admin email and password.";status.className="status error";return;}
+ if(!email||!password){status.textContent="Enter owner email and password.";status.className="status error";return;}
  const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
  if(error){status.textContent="Login failed: "+error.message;status.className="status error";return;}
- status.textContent="✅ Logged in.";status.className="status success"; updateAdminUI(data.user);
+ if(!isOwner(data.user)){await supabaseClient.auth.signOut();status.textContent="⛔ Only the KahaniHub owner can access this dashboard.";status.className="status error";updateAdminUI(null);return;}
+ status.textContent="✅ Owner logged in.";status.className="status success"; updateAdminUI(data.user);
 }
 async function adminLogout(){await supabaseClient.auth.signOut();updateAdminUI(null);}
 async function updateAdminUI(user){
- const panel=document.getElementById("adminPanel"), logout=document.getElementById("adminLogoutBtn");
- if(user){panel.hidden=false;logout.hidden=false;await loadAdminPosts();} else {panel.hidden=true;logout.hidden=true;document.getElementById("adminPosts").innerHTML="<div class='loading'>Login to load posts.</div>";}
+ const panel=document.getElementById("adminPanel"), logout=document.getElementById("adminLogoutBtn"), status=document.getElementById("adminStatus");
+ if(user && isOwner(user)){panel.hidden=false;logout.hidden=false;if(status){status.textContent="✅ Owner access granted.";status.className="status success";}await loadAdminPosts();} else {panel.hidden=true;logout.hidden=true;document.getElementById("adminPosts").innerHTML="<div class='loading'>Owner login required.</div>";}
+}
+async function restoreOwnerSession(){
+ const {data,error}=await supabaseClient.auth.getSession();
+ if(error||!data?.session){updateAdminUI(null);return;}
+ if(isOwner(data.session.user)) updateAdminUI(data.session.user);
+ else {await supabaseClient.auth.signOut();updateAdminUI(null);}
 }
 async function loadAdminPosts(){
  const box=document.getElementById("adminPosts");
  const {data,error}=await supabaseClient.from("media_posts").select("id,title,description,category,file_url,created_at").order("created_at",{ascending:false});
  if(error){box.innerHTML="<div class='feed-item'>Unable to load posts: "+escapeHTML(error.message)+"</div>";return;}
  box.innerHTML="";
- (data||[]).forEach(item=>{const row=document.createElement("div");row.className="feed-item";row.innerHTML=`<h4>${escapeHTML(item.title||"Untitled")}</h4><p>${escapeHTML(item.category||"General")}</p><button type="button" data-id="${escapeHTML(item.id)}">🗑️ Delete</button>`;row.querySelector("button").addEventListener("click",()=>deleteAdminPost(item.id));box.appendChild(row);});
+ (data||[]).forEach(item=>{
+ const row=document.createElement("div");row.className="feed-item";
+ const current=CATEGORY_NAMES.includes(String(item.category||""))?String(item.category):"General";
+ row.innerHTML=`<h4>${escapeHTML(item.title||"Untitled")}</h4><p>Current category: <strong>${escapeHTML(current)}</strong></p><select class="admin-category-select" style="width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;margin:6px 0">${CATEGORY_NAMES.map(c=>`<option value="${escapeHTML(c)}" ${c===current?"selected":""}>${escapeHTML(c)}</option>`).join("")}</select><div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="save-category-btn">💾 Save Category</button><button type="button" class="delete-post-btn">🗑️ Delete</button></div>`;
+ row.querySelector(".save-category-btn").addEventListener("click",()=>updatePostCategory(item.id,row.querySelector(".admin-category-select").value));
+ row.querySelector(".delete-post-btn").addEventListener("click",()=>deleteAdminPost(item.id));
+ box.appendChild(row);
+});
  if(!data?.length) box.innerHTML="<div class='feed-item'>No posts found.</div>";
+}
+async function updatePostCategory(id,category){
+ const {data:sessionData}=await supabaseClient.auth.getSession();
+ if(!sessionData?.session){alert("Please login to manage categories.");return;}
+ if(!CATEGORY_NAMES.includes(category)){alert("Invalid category.");return;}
+ const {error}=await supabaseClient.from("media_posts").update({category}).eq("id",id);
+ if(error){alert("Category update failed: "+error.message);return;}
+ await loadAdminPosts();
+ await loadPublicContent();
+ alert("✅ Category updated successfully.");
 }
 async function deleteAdminPost(id){
  if(!confirm("Delete this post?")) return;
@@ -298,7 +397,11 @@ async function deleteAdminPost(id){
 }
 document.getElementById("adminLoginBtn")?.addEventListener("click",adminLogin);
 document.getElementById("adminLogoutBtn")?.addEventListener("click",adminLogout);
-supabaseClient.auth.getSession().then(({data})=>updateAdminUI(data.session?.user||null));
+document.addEventListener("DOMContentLoaded",()=>{restoreOwnerSession();});
+supabaseClient.auth.onAuthStateChange((event,session)=>{
+  if(event==="SIGNED_OUT"){updateAdminUI(null);return;}
+  if(session && isOwner(session.user)) setTimeout(()=>updateAdminUI(session.user),0);
+});
 
 
 /* Stories */
@@ -325,15 +428,24 @@ document.querySelectorAll(".urdu").forEach(el=>el.classList.toggle("hidden",!urd
 langButton.textContent=urduMode?"English":"اردو";
 });
 
-/* News / World News upload categories */
-let selectedUploadCategory="General";
+/* Category system */
+const CATEGORY_NAMES=["Story","Poetry","History","News","World News","Music & Lyrics","AI Music Prompts","AI Images","Images for Sale","Audio","Videos","AI Videos","General"];
+let selectedUploadCategory="Story";
+const uploadCategorySelect=document.getElementById("uploadCategorySelect");
+function updateUploadCategory(category){
+  selectedUploadCategory=CATEGORY_NAMES.includes(category)?category:"General";
+  if(uploadCategorySelect) uploadCategorySelect.value=selectedUploadCategory;
+  const box=document.getElementById("uploadCategory");
+  if(box) box.textContent="📌 Upload Category: "+selectedUploadCategory;
+  const title=document.getElementById("uploadTitle");
+  if(title && !title.value.trim()) title.placeholder=selectedUploadCategory+" title";
+}
+if(uploadCategorySelect){
+  uploadCategorySelect.addEventListener("change",()=>updateUploadCategory(uploadCategorySelect.value));
+}
 function openCategoryUpload(category){
-selectedUploadCategory=category;
-const box=document.getElementById("uploadCategory");
-if(box) box.textContent="📌 Upload Category: "+category;
-const title=document.getElementById("uploadTitle");
-if(title && !title.value.trim()) title.placeholder=category+" title";
-document.getElementById("upload").scrollIntoView({behavior:"smooth",block:"start"});
+  updateUploadCategory(category);
+  document.getElementById("upload").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
 /* Upload preview */
@@ -345,6 +457,7 @@ Array.from(mediaUpload.files).forEach(file=>{
 const url=URL.createObjectURL(file);
 if(file.type.startsWith("image/")){const img=document.createElement("img");img.src=url;img.alt="Selected image";preview.appendChild(img);}
 else if(file.type.startsWith("video/")){const video=document.createElement("video");video.src=url;video.controls=true;preview.appendChild(video);}
+else if(file.type.startsWith("audio/")){const audio=document.createElement("audio");audio.src=url;audio.controls=true;audio.style.width="100%";preview.appendChild(audio);}
 });
 });
 
@@ -380,6 +493,7 @@ if(databaseError) throw new Error("Database save failed: "+databaseError.message
 }
 showStatus("✅ Upload successful! Your content is now public on KahaniHub.","success");
 mediaUpload.value="";document.getElementById("uploadTitle").value="";document.getElementById("uploadDescription").value="";document.getElementById("uploadPreview").innerHTML="";
+updateUploadCategory("Story");
 await loadPublicContent();
 }catch(error){console.error(error);showStatus("❌ "+(error.message||"Upload failed."),"error");}
 finally{button.disabled=false;button.innerHTML='<i class="fa-solid fa-cloud-arrow-up"></i> Upload Permanently';}
@@ -388,9 +502,11 @@ finally{button.disabled=false;button.innerHTML='<i class="fa-solid fa-cloud-arro
 /* News filters and dedicated feeds */
 let currentContentFilter="all";
 function setContentFilter(filter){
-currentContentFilter=filter;
-document.querySelectorAll(".filter-btn").forEach(btn=>btn.classList.toggle("active",btn.dataset.filter===filter));
+currentContentFilter=filter||"all";
+document.querySelectorAll(".filter-btn").forEach(btn=>btn.classList.toggle("active",btn.dataset.filter===currentContentFilter));
 loadPublicContent();
+const gallery=document.getElementById("gallery");
+if(gallery) gallery.scrollIntoView({behavior:"smooth",block:"start"});
 }
 document.querySelectorAll(".filter-btn").forEach(btn=>btn.addEventListener("click",()=>setContentFilter(btn.dataset.filter)));
 
@@ -409,6 +525,17 @@ el.appendChild(wrap);
 }
 
 /* Gallery */
+function categorySlug(category){return String(category||"General").replace(/[^a-zA-Z0-9]+/g,"-").replace(/^-|-$/g,"");}
+function renderCategoryBrowser(items){
+ const cats=["Stories","Poetry","History","News","World News","Music & Lyrics","AI Images","Images for Sale","Audio","Videos","AI Videos"];
+ cats.forEach(cat=>{
+   const box=document.getElementById("category-list-"+categorySlug(cat));
+   if(!box)return;
+   const rows=(items||[]).filter(x=>String(x.category||"General").toLowerCase()===cat.toLowerCase());
+   box.innerHTML=rows.length?rows.map(x=>`<div class="cat-item"><a href="?post=${encodeURIComponent(x.id)}">${escapeHTML(x.title||"Untitled")}</a></div>`).join(""):'<div class="cat-empty">No content in this category yet.</div>';
+ });
+}
+
 async function loadPublicContent(){
 const gallery=document.getElementById("publicGallery");
 const requestedPost=new URLSearchParams(window.location.search).get("post");
@@ -441,13 +568,14 @@ if(requestedPost){
 contentData=contentData.filter(item=>String(item.id)===String(requestedPost));
 if(!contentData.length){gallery.innerHTML='<div class="card"><h3>Post not found</h3><p>This KahaniHub post may have been deleted or its link is incorrect.</p><p><a href="./" style="font-weight:700">Open KahaniHub home</a></p></div>';return;}
 }
-if(!contentData.length){gallery.innerHTML='<div class="card"><h3>No content uploaded yet</h3><p>Be the first person to upload content to KahaniHub.</p></div>';return;}
+if(!contentData.length){gallery.innerHTML='<div class="card"><h3>No content uploaded yet</h3><p>Is category mein abhi koi post upload nahi hui.</p></div>';return;}
 gallery.innerHTML=requestedPost ? '<div class="card shared-notice" style="margin-bottom:15px"><strong>📌 KahaniHub Shared Post</strong><p style="margin:6px 0 0">This is the exact post shared from KahaniHub.</p></div>' : "";
 contentData.forEach(item=>{
 const card=document.createElement("div");card.className="media-card";
 let mediaHTML="";
 if(item.file_type&&item.file_type.startsWith("image/")) mediaHTML=`<img src="${escapeHTML(item.file_url)}" alt="${escapeHTML(item.title||"KahaniHub image")}" loading="lazy">`;
 else if(item.file_type&&item.file_type.startsWith("video/")) mediaHTML=`<video src="${escapeHTML(item.file_url)}" controls preload="metadata"></video>`;
+else if(item.file_type&&item.file_type.startsWith("audio/")) mediaHTML=`<div style="padding:25px;background:#eef2ff"><div style="font-size:42px;text-align:center;margin-bottom:12px">🎧</div><audio src="${escapeHTML(item.file_url)}" controls style="width:100%"></audio></div>`;
 else mediaHTML='<div style="padding:30px;text-align:center">📁</div>';
 const url=getPostUrl(item);
 const title=String(item.title||"KahaniHub Content");
