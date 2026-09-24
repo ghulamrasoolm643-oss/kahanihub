@@ -575,6 +575,7 @@ const {data,error}=await supabaseClient.from("media_posts").select("*").order("c
 if(error) throw error;
 let contentData=data||[];
 const allContent=[...contentData];
+renderCategoryBrowser(allContent);
 const newsItems=allContent.filter(item=>String(item.category||"").toLowerCase()==="news");
 const worldNewsItems=allContent.filter(item=>String(item.category||"").toLowerCase()==="world news");
 if(!requestedPost){
