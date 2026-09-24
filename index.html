@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>KahaniHub - Stories, Poetry &amp; Creativity</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KahaniHub - Stories, Poetry & Creativity</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *{box-sizing:border-box}
@@ -61,16 +60,35 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
 @media(max-width:700px){.hero-inner{grid-template-columns:1fr}h1{font-size:32px}nav{justify-content:center}}
 
 .dashboard-section,.policy-section{max-width:1150px;margin:30px auto;padding:20px}.dashboard-card,.policy-card{background:#fff;border-radius:18px;padding:24px;box-shadow:0 8px 30px rgba(0,0,0,.08)}.dashboard-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.dashboard-grid input,.dashboard-grid button,.viewer-language select{padding:12px;border-radius:10px;border:1px solid #cbd5e1}.dashboard-grid button{cursor:pointer;font-weight:700}.feed-item img{max-width:180px;border-radius:12px;margin-bottom:8px}.muted{color:#64748b}.translation-note{margin:8px 0;padding:10px;border-radius:10px;background:#f1f5f9;color:#475569}.viewer-language{display:flex;align-items:center;gap:10px;margin:12px 0;flex-wrap:wrap}.policy-card p{line-height:1.7}@media(max-width:700px){.dashboard-grid{grid-template-columns:1fr}}
+
+/* Compact mobile-friendly header: keeps more room for articles and news */
+header{padding:9px 3%;}
+.nav{gap:6px;}
+.logo{font-size:23px;line-height:1.1;}
+nav{gap:2px;justify-content:center;}
+nav a,nav button{font-size:12px;padding:4px 5px;line-height:1.2;}
+.category-menu>button{padding:4px 5px;font-size:12px;}
+@media(max-width:700px){
+  header{padding:7px 2.5%;}
+  .nav{gap:4px;}
+  .logo{font-size:22px;}
+  nav{width:100%;gap:1px;justify-content:center;align-content:center;}
+  nav a,nav button{font-size:11.5px;padding:3px 4px;}
+  .category-menu>button{font-size:11.5px;padding:3px 4px;}
+  .category-dropdown{min-width:190px;padding:6px;}
+  .category-dropdown a{padding:7px 9px;font-size:12px;}
+}
 </style>
 </head>
 <body>
+
 <header>
 <div class="nav">
 <div class="logo">Kahani<span>Hub</span></div>
 <nav>
 <div class="category-menu">
-<button aria-haspopup="true" type="button">Categories ▾</button>
-<div aria-label="Public categories" class="category-dropdown">
+<button type="button" aria-haspopup="true">Categories ▾</button>
+<div class="category-dropdown" aria-label="Public categories">
 <a href="#category-Stories">📖 Stories</a>
 <a href="#category-Poetry">✍️ Poetry</a>
 <a href="#category-History">🏛️ History</a>
@@ -91,11 +109,12 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
 <a href="#gallery">Gallery</a>
 <a href="#marketplace">Marketplace</a>
 <a href="#latest-products">Latest Products</a>
-<a href="#privacy">Privacy</a><a href="#terms">Terms</a><a href="#about">About</a>
+<a href="#dashboard">Dashboard</a><a href="#privacy">Privacy</a><a href="#terms">Terms</a><a href="#about">About</a>
 <button id="lang" type="button">اردو</button>
 </nav>
 </div>
 </header>
+
 <div class="hero">
 <div class="hero-inner">
 <div>
@@ -111,76 +130,83 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
 </div>
 <div class="hero-card">📚 ✨ 🎵<p>Read. Create. Sell.</p></div>
 </div>
-</div><section class="market" id="news">
-<h2 class="section-title">News Panel</h2>
-<div class="grid">
-<div class="card">📰<h3>News</h3><p>Upload local, Pakistan, technology and other news content.</p><button class="category-btn" onclick="openCategoryUpload('News')" type="button">⬆️ Upload News</button></div>
-<div class="card">🌍<h3>World News</h3><p>Upload international and world news content.</p><button class="category-btn world" onclick="openCategoryUpload('World News')" type="button">⬆️ Upload World News</button></div>
 </div>
-</section><section id="featured">
+
+<section id="categories">
+<h2 class="section-title">Explore Categories</h2>
+<p class="section-title">Har post apni selected category mein automatically show hogi.</p>
+<div class="category-grid">
+<div class="category-card"><span class="icon">📖</span><h3>Stories</h3><p>Kahaniyan aur emotional stories</p><button type="button" onclick="setContentFilter('Story')">View Stories</button></div>
+<div class="category-card"><span class="icon">✍️</span><h3>Poetry</h3><p>Urdu & English poetry</p><button type="button" onclick="setContentFilter('Poetry')">View Poetry</button></div>
+<div class="category-card"><span class="icon">🏛️</span><h3>History</h3><p>Historical content</p><button type="button" onclick="setContentFilter('History')">View History</button></div>
+<div class="category-card"><span class="icon">📰</span><h3>News</h3><p>Pakistan & local news</p><button type="button" onclick="setContentFilter('News')">View News</button></div>
+<div class="category-card"><span class="icon">🌍</span><h3>World News</h3><p>International news</p><button type="button" onclick="setContentFilter('World News')">View World News</button></div>
+<div class="category-card"><span class="icon">🎵</span><h3>Music & Lyrics</h3><p>Songs and lyrics</p><button type="button" onclick="setContentFilter('Music & Lyrics')">View Music</button></div>
+<div class="category-card"><span class="icon">🤖</span><h3>AI Images</h3><p>AI-generated images</p><button type="button" onclick="setContentFilter('AI Images')">View AI Images</button></div>
+<div class="category-card"><span class="icon">💰</span><h3>Images for Sale</h3><p>Images available for sale</p><button type="button" onclick="setContentFilter('Images for Sale')">View Sale Images</button></div>
+<div class="category-card"><span class="icon">🎧</span><h3>Audio</h3><p>Audio uploads</p><button type="button" onclick="setContentFilter('Audio')">View Audio</button></div>
+<div class="category-card"><span class="icon">🎬</span><h3>Videos</h3><p>Video uploads</p><button type="button" onclick="setContentFilter('Videos')">View Videos</button></div>
+<div class="category-card"><span class="icon">🤖🎬</span><h3>AI Videos</h3><p>AI-generated videos</p><button type="button" onclick="setContentFilter('AI Videos')">View AI Videos</button></div>
+<div class="category-card"><span class="icon">🎼</span><h3>AI Music Prompts</h3><p>Prompts for AI music</p><button type="button" onclick="setContentFilter('AI Music Prompts')">View Prompts</button></div>
+</div>
+</section>
+
+</section>
+
+<section id="category-browser" class="policy-section">
+<h2 class="section-title">Public Categories</h2>
+<div class="grid">
+<div class="card" id="category-Stories"><h3>📖 Stories</h3><div id="category-list-Stories" class="category-list">Loading...</div></div>
+<div class="card" id="category-Poetry"><h3>✍️ Poetry</h3><div id="category-list-Poetry" class="category-list">Loading...</div></div>
+<div class="card" id="category-History"><h3>🏛️ History</h3><div id="category-list-History" class="category-list">Loading...</div></div>
+<div class="card" id="category-News"><h3>📰 News</h3><div id="category-list-News" class="category-list">Loading...</div></div>
+<div class="card" id="category-World-News"><h3>🌍 World News</h3><div id="category-list-World-News" class="category-list">Loading...</div></div>
+<div class="card" id="category-Music-Lyrics"><h3>🎵 Music &amp; Lyrics</h3><div id="category-list-Music-Lyrics" class="category-list">Loading...</div></div>
+<div class="card" id="category-AI-Images"><h3>🤖 AI Images</h3><div id="category-list-AI-Images" class="category-list">Loading...</div></div>
+<div class="card" id="category-Images-for-Sale"><h3>💰 Images for Sale</h3><div id="category-list-Images-for-Sale" class="category-list">Loading...</div></div>
+<div class="card" id="category-Audio"><h3>🎧 Audio</h3><div id="category-list-Audio" class="category-list">Loading...</div></div>
+<div class="card" id="category-Videos"><h3>🎬 Videos</h3><div id="category-list-Videos" class="category-list">Loading...</div></div>
+<div class="card" id="category-AI-Videos"><h3>🤖🎬 AI Videos</h3><div id="category-list-AI-Videos" class="category-list">Loading...</div></div>
+</div>
+</section>
+
+<section id="featured">
 <h2 class="section-title">Featured Content</h2>
 <div class="grid">
 <div class="card"><b>Story</b><h3>میری زندگی، میری مرضی ❤️</h3><p>ایک محبت جو نفرت کو ہرا گئی۔</p><a class="btn" href="#story">Read More</a></div>
 <div class="card"><b>Poetry</b><h3>Dil Ki Baarish</h3><p>Romantic poetry filled with emotions.</p></div>
 </div>
-</section><section class="story-section" dir="rtl" id="story">
+</section>
+
+<section id="story" class="story-section" dir="rtl">
 <h1 id="storyTitle">میری زندگی، میری مرضی ❤️</h1>
 <label for="languageSelect">زبان منتخب کریں:</label>
 <select id="languageSelect">
 <option value="ur">اردو</option><option value="en">English</option><option value="hi">हिन्दी</option><option value="sd">سنڌي</option>
 </select>
-<div class="story-content" id="storyContent"></div>
-</section><section id="categories">
-<h2 class="section-title">Explore Categories</h2>
-<p class="section-title">Har post apni selected category mein automatically show hogi.</p>
-<div class="category-grid">
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="category-card"><span class="icon">📰</span><h3>News</h3><p>Pakistan &amp; local news</p><button onclick="setContentFilter('News')" type="button">View News</button></div><div class="category-card"><span class="icon">🌍</span><h3>World News</h3><p>International news</p><button onclick="setContentFilter('World News')" type="button">View World News</button></div><div class="category-card"><span class="icon">🏛️</span><h3>History</h3><p>Historical content</p><button onclick="setContentFilter('History')" type="button">View History</button></div><div class="category-card"><span class="icon">📖</span><h3>Stories</h3><p>Kahaniyan aur emotional stories</p><button onclick="setContentFilter('Story')" type="button">View Stories</button></div><div class="category-card"><span class="icon">✍️</span><h3>Poetry</h3><p>Urdu &amp; English poetry</p><button onclick="setContentFilter('Poetry')" type="button">View Poetry</button></div><div class="category-card"><span class="icon">🤖</span><h3>AI Images</h3><p>AI-generated images</p><button onclick="setContentFilter('AI Images')" type="button">View AI Images</button></div><div class="category-card"><span class="icon">🎼</span><h3>AI Music Prompts</h3><p>Prompts for AI music</p><button onclick="setContentFilter('AI Music Prompts')" type="button">View Prompts</button></div><div class="category-card"><span class="icon">🤖🎬</span><h3>AI Videos</h3><p>AI-generated videos</p><button onclick="setContentFilter('AI Videos')" type="button">View AI Videos</button></div><div class="category-card"><span class="icon">🎧</span><h3>Audio</h3><p>Audio uploads</p><button onclick="setContentFilter('Audio')" type="button">View Audio</button></div><div class="category-card"><span class="icon">💰</span><h3>Images for Sale</h3><p>Images available for sale</p><button onclick="setContentFilter('Images for Sale')" type="button">View Sale Images</button></div><div class="category-card"><span class="icon">🎵</span><h3>Music &amp; Lyrics</h3><p>Songs and lyrics</p><button onclick="setContentFilter('Music &amp; Lyrics')" type="button">View Music</button></div><div class="category-card"><span class="icon">🎬</span><h3>Videos</h3><p>Video uploads</p><button onclick="setContentFilter('Videos')" type="button">View Videos</button></div></div>
-</section><section class="policy-section" id="category-browser">
-<h2 class="section-title">Public Categories</h2>
-<div class="grid">
-
-
-
-
-
-
-
-
-
-
-
-<div class="card" id="category-News"><h3>📰 News</h3><div class="category-list" id="category-list-News">Loading...</div></div><div class="card" id="category-World-News"><h3>🌍 World News</h3><div class="category-list" id="category-list-World-News">Loading...</div></div><div class="card" id="category-History"><h3>🏛️ History</h3><div class="category-list" id="category-list-History">Loading...</div></div><div class="card" id="category-Stories"><h3>📖 Stories</h3><div class="category-list" id="category-list-Stories">Loading...</div></div><div class="card" id="category-Poetry"><h3>✍️ Poetry</h3><div class="category-list" id="category-list-Poetry">Loading...</div></div><div class="card" id="category-Audio"><h3>🎧 Audio</h3><div class="category-list" id="category-list-Audio">Loading...</div></div><div class="card" id="category-Videos"><h3>🎬 Videos</h3><div class="category-list" id="category-list-Videos">Loading...</div></div><div class="card" id="category-Music-Lyrics"><h3>🎵 Music &amp; Lyrics</h3><div class="category-list" id="category-list-Music-Lyrics">Loading...</div></div><div class="card" id="category-Images-for-Sale"><h3>💰 Images for Sale</h3><div class="category-list" id="category-list-Images-for-Sale">Loading...</div></div><div class="card" id="category-AI-Images"><h3>🤖 AI Images</h3><div class="category-list" id="category-list-AI-Images">Loading...</div></div><div class="card" id="category-AI-Videos"><h3>🤖🎬 AI Videos</h3><div class="category-list" id="category-list-AI-Videos">Loading...</div></div></div>
+<div id="storyContent" class="story-content"></div>
 </section>
 
-
-
-
-
+<section id="news" class="market">
+<h2 class="section-title">News Panel</h2>
+<div class="grid">
+<div class="card">📰<h3>News</h3><p>Upload local, Pakistan, technology and other news content.</p><button class="category-btn" type="button" onclick="openCategoryUpload('News')">⬆️ Upload News</button></div>
+<div class="card">🌍<h3>World News</h3><p>Upload international and world news content.</p><button class="category-btn world" type="button" onclick="openCategoryUpload('World News')">⬆️ Upload World News</button></div>
+</div>
+</section>
 
 <section id="upload">
 <h2 class="section-title">Upload Image or Video</h2>
 <p class="section-title">Upload your image or video and save it permanently on KahaniHub.</p>
 <div class="upload-box">
 <label for="uploadCategorySelect">Select Post Category</label>
-<select class="upload-category-select" id="uploadCategorySelect">
+<select id="uploadCategorySelect" class="upload-category-select">
 <option value="Story">📖 Stories</option>
 <option value="Poetry">✍️ Poetry</option>
 <option value="History">🏛️ History</option>
 <option value="News">📰 News</option>
 <option value="World News">🌍 World News</option>
-<option value="Music &amp; Lyrics">🎵 Music &amp; Lyrics</option>
+<option value="Music & Lyrics">🎵 Music & Lyrics</option>
 <option value="AI Music Prompts">🎼 AI Music Prompts</option>
 <option value="AI Images">🤖 AI Images</option>
 <option value="Images for Sale">💰 Images for Sale</option>
@@ -189,43 +215,46 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
 <option value="AI Videos">🤖🎬 AI Videos</option>
 <option value="General">📌 General</option>
 </select>
-<div class="upload-category" id="uploadCategory">📌 Upload Category: Story</div>
+<div id="uploadCategory" class="upload-category">📌 Upload Category: Story</div>
 <label for="mediaUpload">Select Image, Audio or Video</label>
-<input accept="image/*,audio/*,video/*" id="mediaUpload" multiple="" type="file"/>
-<input id="uploadTitle" placeholder="Title" type="text"/>
-<textarea id="uploadDescription" maxlength="5000" placeholder="Description (maximum 5,000 characters)"></textarea>
+<input id="mediaUpload" type="file" accept="image/*,audio/*,video/*" multiple>
+<input id="uploadTitle" type="text" placeholder="Title">
+<textarea id="uploadDescription" placeholder="Description (maximum 5,000 characters)" maxlength="5000"></textarea>
 <button id="uploadButton" type="button"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Permanently</button>
-<div class="status" id="uploadStatus"></div>
-<div class="preview" id="uploadPreview"></div>
+<div id="uploadStatus" class="status"></div>
+<div id="uploadPreview" class="preview"></div>
 </div>
 </section>
+
 <section id="gallery">
 <h2 class="section-title">Latest Public Content</h2>
-<div aria-label="Content filters" class="content-filters" role="tablist">
-<button class="filter-btn active" data-filter="all" type="button">All</button>
-<button class="filter-btn" data-filter="Story" type="button">📖 Stories</button>
-<button class="filter-btn" data-filter="Poetry" type="button">✍️ Poetry</button>
-<button class="filter-btn" data-filter="History" type="button">🏛️ History</button>
-<button class="filter-btn" data-filter="News" type="button">📰 News</button>
-<button class="filter-btn" data-filter="World News" type="button">🌍 World News</button>
-<button class="filter-btn" data-filter="Music &amp; Lyrics" type="button">🎵 Music</button>
-<button class="filter-btn" data-filter="AI Images" type="button">🤖 AI Images</button>
-<button class="filter-btn" data-filter="Images for Sale" type="button">💰 For Sale</button>
-<button class="filter-btn" data-filter="Audio" type="button">🎧 Audio</button>
-<button class="filter-btn" data-filter="Videos" type="button">🎬 Videos</button>
-<button class="filter-btn" data-filter="AI Videos" type="button">🤖🎬 AI Videos</button>
-<button class="filter-btn" data-filter="AI Music Prompts" type="button">🎼 AI Prompts</button>
+<div class="content-filters" role="tablist" aria-label="Content filters">
+<button class="filter-btn active" type="button" data-filter="all">All</button>
+<button class="filter-btn" type="button" data-filter="Story">📖 Stories</button>
+<button class="filter-btn" type="button" data-filter="Poetry">✍️ Poetry</button>
+<button class="filter-btn" type="button" data-filter="History">🏛️ History</button>
+<button class="filter-btn" type="button" data-filter="News">📰 News</button>
+<button class="filter-btn" type="button" data-filter="World News">🌍 World News</button>
+<button class="filter-btn" type="button" data-filter="Music & Lyrics">🎵 Music</button>
+<button class="filter-btn" type="button" data-filter="AI Images">🤖 AI Images</button>
+<button class="filter-btn" type="button" data-filter="Images for Sale">💰 For Sale</button>
+<button class="filter-btn" type="button" data-filter="Audio">🎧 Audio</button>
+<button class="filter-btn" type="button" data-filter="Videos">🎬 Videos</button>
+<button class="filter-btn" type="button" data-filter="AI Videos">🤖🎬 AI Videos</button>
+<button class="filter-btn" type="button" data-filter="AI Music Prompts">🎼 AI Prompts</button>
 </div>
-<div class="grid" id="publicGallery"><div class="loading">Loading content...</div></div>
+<div id="publicGallery" class="grid"><div class="loading">Loading content...</div></div>
 </section>
-<section class="market" id="newsFeeds">
-<h2 class="section-title">News &amp; World News</h2>
+
+<section id="newsFeeds" class="market">
+<h2 class="section-title">News & World News</h2>
 <div class="news-feed-grid">
-<div class="feed-panel"><h3>📰 Latest News</h3><div class="feed-list" id="newsFeed"><div class="loading">Loading News...</div></div></div>
-<div class="feed-panel"><h3>🌍 Latest World News</h3><div class="feed-list" id="worldNewsFeed"><div class="loading">Loading World News...</div></div></div>
+<div class="feed-panel"><h3>📰 Latest News</h3><div id="newsFeed" class="feed-list"><div class="loading">Loading News...</div></div></div>
+<div class="feed-panel"><h3>🌍 Latest World News</h3><div id="worldNewsFeed" class="feed-list"><div class="loading">Loading World News...</div></div></div>
 </div>
 </section>
-<section class="market" id="marketplace">
+
+<section id="marketplace" class="market">
 <h2 class="section-title">Digital Marketplace</h2>
 <div class="grid">
 <div class="card">🖼️<h3>AI Image Pack</h3><p class="price">💵 $3.00</p><a class="product-btn" href="#about">Get Now</a></div>
@@ -233,6 +262,7 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
 <div class="card">🎧<h3>AI Song Collection</h3><p class="price">💵 $4.00</p><a class="product-btn" href="#about">Get Now</a></div>
 </div>
 </section>
+
 <section id="latest-products">
 <h2 class="section-title">Latest Products</h2>
 <div class="grid">
@@ -241,25 +271,27 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
 <div class="card"><h3>Digital Creator Pack</h3><p>Creative digital content for creators.</p></div>
 </div>
 </section>
-<section class="dashboard-section" data-admin-only="true" id="dashboard" style="display:none;">
+
+<section id="dashboard" class="dashboard-section">
 <h2 class="section-title">Admin Dashboard</h2>
 <div class="dashboard-card">
 <p><strong>Admin login</strong></p>
 <p class="muted">The dashboard uses Supabase Authentication. Create your admin user in Supabase Authentication first, then sign in here.</p>
 <div class="dashboard-grid">
-<input id="adminEmail" placeholder="Admin email" type="email"/>
-<input id="adminPassword" placeholder="Password" type="password"/>
+<input id="adminEmail" type="email" placeholder="Admin email">
+<input id="adminPassword" type="password" placeholder="Password">
 <button id="adminLoginBtn" type="button">🔐 Login</button>
-<button hidden="" id="adminLogoutBtn" type="button">Logout</button>
+<button id="adminLogoutBtn" type="button" hidden>Logout</button>
 </div>
-<div class="status" id="adminStatus"></div>
-<div hidden="" id="adminPanel">
+<div id="adminStatus" class="status"></div>
+<div id="adminPanel" hidden>
 <h3>Manage uploaded posts</h3>
-<div class="feed-list" id="adminPosts"><div class="loading">Login to load posts.</div></div>
+<div id="adminPosts" class="feed-list"><div class="loading">Login to load posts.</div></div>
 </div>
 </div>
 </section>
-<section class="about" id="about">
+
+<section id="about" class="about">
 <h2>About KahaniHub</h2>
 <p>Welcome to KahaniHub — your creative world of stories, poetry, AI images, AI videos, AI songs and digital content.</p>
 <p>KahaniHub is created and managed by Ghulam Rasool Mallah. Our mission is to share creativity, entertainment and digital content with everyone.</p>
@@ -267,13 +299,14 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
 <h3>Contact Me</h3>
 <p><span class="contact-icon">👤</span><strong>Name:</strong> Ghulam Rasool Mallah</p>
 <p><span class="contact-icon">✉️</span><strong>Email:</strong> <a href="mailto:ghulamrasoolm643@gmail.com">ghulamrasoolm643@gmail.com</a></p>
-<p><a href="https://wa.me/923166604532" rel="noopener" style="font-size:20px;color:#fff;background:#25D366;padding:10px 15px;border-radius:10px;display:inline-flex;align-items:center;gap:8px" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></p>
+<p><a href="https://wa.me/923166604532" target="_blank" rel="noopener" style="font-size:20px;color:#fff;background:#25D366;padding:10px 15px;border-radius:10px;display:inline-flex;align-items:center;gap:8px"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></p>
 <p><strong>Location:</strong> Karachi, Pakistan</p>
 </div>
 <div class="about-links"><a href="#about">About</a> · <a href="#terms">Terms &amp; Conditions</a> · <a href="#privacy">Privacy Policy</a></div>
 </section>
-<section class="policy-section" id="terms">
-<h2 class="section-title">Terms &amp; Conditions</h2>
+
+<section id="terms" class="policy-section">
+<h2 class="section-title">Terms & Conditions</h2>
 <div class="policy-card">
 <p>By using KahaniHub, you agree to use the website lawfully and respectfully.</p>
 <p>You are responsible for the content you upload, including images, videos, stories, descriptions and other material. You must have the necessary rights or permission to publish it.</p>
@@ -283,7 +316,8 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
 <p>For questions about these Terms, contact: <a href="mailto:ghulamrasoolm643@gmail.com">ghulamrasoolm643@gmail.com</a>.</p>
 </div>
 </section>
-<section class="policy-section" id="privacy">
+
+<section id="privacy" class="policy-section">
 <h2 class="section-title">Privacy Policy</h2>
 <div class="policy-card">
 <p>KahaniHub respects your privacy. We may collect information that you voluntarily provide, such as content you upload and contact information you submit through the website.</p>
@@ -294,7 +328,9 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px}
 <p class="muted">This policy is general website information and should be reviewed and updated for the laws and services that apply to KahaniHub.</p>
 </div>
 </section>
+
 <footer>© 2026 KahaniHub. All Rights Reserved.</footer>
+
 <script>
 "use strict";
 
@@ -354,32 +390,13 @@ async function loadAdminPosts(){
  (data||[]).forEach(item=>{
  const row=document.createElement("div");row.className="feed-item";
  const current=CATEGORY_NAMES.includes(String(item.category||""))?String(item.category):"General";
- row.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px"><div style="flex:1"><h4 class="admin-post-title">${escapeHTML(item.title||"Untitled")}</h4><p class="admin-post-description">${escapeHTML(item.description||"")}</p><p>Current category: <strong class="admin-post-category">${escapeHTML(current)}</strong></p></div><div class="admin-post-menu" style="position:relative"><button type="button" class="admin-dots-btn" aria-label="Post options" style="border:0;background:transparent;font-size:24px;line-height:1;cursor:pointer;padding:4px 8px">⋮</button><div class="admin-dots-menu" hidden style="position:absolute;right:0;top:36px;z-index:10;background:#fff;border:1px solid #dbe3ee;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.12);min-width:150px;padding:6px"><button type="button" class="edit-post-btn" style="display:block;width:100%;text-align:left;border:0;background:none;padding:9px;border-radius:7px;cursor:pointer">✏️ Edit Post</button><button type="button" class="delete-post-btn" style="display:block;width:100%;text-align:left;border:0;background:none;padding:9px;border-radius:7px;cursor:pointer">🗑️ Delete</button></div></div></div><div class="admin-edit-area" hidden><input class="admin-edit-title" type="text" maxlength="200" value="${escapeHTML(item.title||"")}" placeholder="Post title" style="width:100%;box-sizing:border-box;padding:10px;border:1px solid #cbd5e1;border-radius:8px;margin:6px 0"><textarea class="admin-edit-description" maxlength="5000" placeholder="Description" style="width:100%;box-sizing:border-box;padding:10px;border:1px solid #cbd5e1;border-radius:8px;margin:6px 0;min-height:110px">${escapeHTML(item.description||"")}</textarea><select class="admin-category-select" style="width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;margin:6px 0">${CATEGORY_NAMES.map(c=>`<option value="${escapeHTML(c)}" ${c===current?"selected":""}>${escapeHTML(c)}</option>`).join("")}</select><div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="save-edit-btn">💾 Save Changes</button><button type="button" class="cancel-edit-btn">Cancel</button></div></div>`;
- const dotsBtn=row.querySelector(".admin-dots-btn"), dotsMenu=row.querySelector(".admin-dots-menu"), editBtn=row.querySelector(".edit-post-btn"), editArea=row.querySelector(".admin-edit-area");
- dotsBtn.addEventListener("click",(e)=>{e.stopPropagation();dotsMenu.hidden=!dotsMenu.hidden;});
- editBtn.addEventListener("click",()=>{dotsMenu.hidden=true;editArea.hidden=false;row.querySelector(".admin-edit-title").focus();});
- row.querySelector(".cancel-edit-btn").addEventListener("click",()=>{editArea.hidden=true;});
- row.querySelector(".save-edit-btn").addEventListener("click",()=>updateAdminPost(item.id,row));
+ row.innerHTML=`<h4>${escapeHTML(item.title||"Untitled")}</h4><p>Current category: <strong>${escapeHTML(current)}</strong></p><select class="admin-category-select" style="width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;margin:6px 0">${CATEGORY_NAMES.map(c=>`<option value="${escapeHTML(c)}" ${c===current?"selected":""}>${escapeHTML(c)}</option>`).join("")}</select><div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="save-category-btn">💾 Save Category</button><button type="button" class="delete-post-btn">🗑️ Delete</button></div>`;
+ row.querySelector(".save-category-btn").addEventListener("click",()=>updatePostCategory(item.id,row.querySelector(".admin-category-select").value));
  row.querySelector(".delete-post-btn").addEventListener("click",()=>deleteAdminPost(item.id));
  box.appendChild(row);
 });
  if(!data?.length) box.innerHTML="<div class='feed-item'>No posts found.</div>";
 }
-async function updateAdminPost(id,row){
- const title=row.querySelector(".admin-edit-title").value.trim();
- const description=row.querySelector(".admin-edit-description").value.trim().slice(0,5000);
- const category=row.querySelector(".admin-category-select").value;
- if(!title){alert("Please enter a post title.");return;}
- if(!CATEGORY_NAMES.includes(category)){alert("Invalid category.");return;}
- const {data:sessionData}=await supabaseClient.auth.getSession();
- if(!sessionData?.session || !isOwner(sessionData.session.user)){alert("Only the owner can edit posts.");return;}
- const {error}=await supabaseClient.from("media_posts").update({title,description,category}).eq("id",id);
- if(error){alert("Post update failed: "+error.message);return;}
- await loadAdminPosts();
- await loadPublicContent();
- alert("✅ Post updated successfully.");
-}
-
 async function updatePostCategory(id,category){
  const {data:sessionData}=await supabaseClient.auth.getSession();
  if(!sessionData?.session){alert("Please login to manage categories.");return;}
@@ -403,8 +420,6 @@ supabaseClient.auth.onAuthStateChange((event,session)=>{
   if(event==="SIGNED_OUT"){updateAdminUI(null);return;}
   if(session && isOwner(session.user)) setTimeout(()=>updateAdminUI(session.user),0);
 });
-
-document.addEventListener("click",()=>{document.querySelectorAll(".admin-dots-menu").forEach(m=>m.hidden=true);});
 
 
 /* Stories */
@@ -616,13 +631,5 @@ await copyLink(url);
 }
 loadPublicContent();
 </script>
-<script>
-// Admin dashboard is hidden from the public navigation and page by default.
-// Owner can open the login screen directly with ?admin=1.
-document.addEventListener('DOMContentLoaded', function(){
-  const adminSection=document.getElementById('dashboard');
-  const params=new URLSearchParams(window.location.search);
-  if(adminSection && params.get('admin')==='1') adminSection.style.display='block';
-});
-</script></body>
+</body>
 </html>
